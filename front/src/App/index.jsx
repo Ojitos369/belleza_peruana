@@ -3,7 +3,7 @@ import { MyContext } from './MyContext';
 import { AllContext } from './MyContext';
 import { Theme } from '../Components/Theme';
 import { Test } from '../Components/Test';
-import { Formulario } from '../Components/Formulario';
+import { Items } from '../Components/Items';
 
 import { Route, Routes, Navigate } from 'react-router-dom';
 
@@ -50,7 +50,7 @@ function AppUI() {
                 <Route
                     path="/"
                     element={
-                        <Formulario />
+                        <Items />
                     }
                 />
                 {/* -----------   /Home   ----------- */}

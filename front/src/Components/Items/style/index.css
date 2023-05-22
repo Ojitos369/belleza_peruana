@@ -1,0 +1,20 @@
+.item-container {
+  border: 1px blue solid;
+  border-radius: 10px;
+  width: 200px;
+  padding: 0;
+  overflow: hidden;
+  img-width: 200px;
+  img-height: 200px;
+  img-border-radius: 10px;
+}
+.item-container h4 {
+  font-size: 10px;
+  margin-top: 5px;
+}
+.item-container button {
+  margin-top: 5px;
+  width: 80%;
+  background-color: blue;
+  margin-bottom: 10px;
+}/*# sourceMappingURL=index.css.map */
