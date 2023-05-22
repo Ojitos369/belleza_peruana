@@ -175,3 +175,7 @@ ce = CE(name_project = 'REANGO BASE', email_settings = email_settings)
 
 class MYE(Exception):
     pass
+
+"""
+docker run -d --name mydb -e MYSQL_ROOT_PASSWORD=pass -e MYSQL_ROOT_USER=user -p 3306:3306 mysql
+"""
