@@ -11,7 +11,7 @@ const Header = props => {
         <React.Fragment>
             <div 
                 id="header-container"
-                className={`flex w-full justify-start items-center`}>
+                className={`flex w-full justify-start items-center text-[var(--my-minor)]`}>
 
                 <p className="w-2/12 toggle-menu">
                     <button 

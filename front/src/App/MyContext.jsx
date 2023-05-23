@@ -36,7 +36,7 @@ function MyContext(props){
         theme: 'black',
     }
     // localStorage.removeItem('localStatev2');
-    const [ls, localDispatch] = useLocalStorage('localState', localInitialState, f);
+    const [ls, localDispatch] = useLocalStorage('belleza_peruana', localInitialState, f);
     const lf = new localFunctions(localDispatch, ls, s, f, dispatch);
 
 
