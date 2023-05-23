@@ -18,3 +18,17 @@
 .bars-secondary {
     fill: var(--my-primary);
 }
+
+.user-alien-primary, .alien-8-bits-primary {
+    fill: #000;
+}
+.user-alien-secondary, .alien-8-bits-secondary {
+    fill: #090;
+}
+
+.door-open-primary {
+    fill: var(--my-minor);
+}
+.door-open-secondary {
+    fill: #bd4d03;
+}

@@ -1,11 +1,17 @@
 import React from 'react';
 import { AllContext } from '../../App/MyContext';
+import { UserMenuModal } from '../Modals/header/UserMenuModal';
 import './style/index.css'
-const Header = props => {
-    const { ls, lf, s, f, Icons } = React.useContext(AllContext);
-    const icons = new Icons();
-    const { abierto } = props
 
+
+const Header = props => {
+    const { ls, Link, s, f, Icons } = React.useContext(AllContext);
+    const icons = new Icons();
+    const { abierto } = props;
+
+    const toggleUserMenu = () => {
+        f.upgradeLvl2('modals', 'header', 'userMenu', !s.modals?.header?.userMenu);
+    }
 
     return (
         <React.Fragment>
@@ -25,21 +31,21 @@ const Header = props => {
                 </p>
 
                 <div className="w-8/12 name-center">
-                    <p className="w-full text-center">
+                    <Link to="/" className="w-full text-center">
                         <b className="text-end big-text">Belleza </b>
                         <span className="text-start small-text">Peruana</span>
-                    </p>
+                    </Link>
                 </div>
 
-                <div className="w-2/12 menu-container">
-                    <button 
-                        className='btn btn-outline-primary w-2/3 manita menu-button'
-                        onClick={lf.toggleTheme}
-                        >
-                        Erick Garcia
-                    </button>
-                </div>
+                <button
+                    className="text-icon manita"
+                    onClick={toggleUserMenu}
+                    >
+                    {icons.userAlien()}
+                </button>
             </div>
+            {!!s.modals?.header?.userMenu && 
+            <UserMenuModal />}
         </React.Fragment>
     )
 }

@@ -3,6 +3,8 @@ import { AllContext } from '../../App/MyContext';
 
 import { Test } from '../Test';
 import { Items } from '../Items';
+import { SingUp } from '../SingUp';
+import { Login } from '../Login';
 
 import { Route, Routes, Navigate } from 'react-router-dom';
 
@@ -24,6 +26,24 @@ const Main = () => {
                     />
                     {/* -----------   /Home   ----------- */}
 
+                    {/* -----------   SingUp   ----------- */}
+                    <Route
+                        path="sing_up"
+                        element={
+                            <SingUp />
+                        }
+                    />
+                    {/* -----------   /SingUp   ----------- */}
+
+                    {/* -----------   Login   ----------- */}
+                    <Route
+                        path="login"
+                        element={
+                            <Login />
+                        }
+                    />
+                    {/* -----------   /Login   ----------- */}
+
 
                     {/* -----------   Test   ----------- */}
                     <Route
@@ -35,7 +55,7 @@ const Main = () => {
                     {/* -----------   /Test   ----------- */}
 
                     {/* -----------   404   ----------- */}
-                    <Route path="*/" element={<div className='text-danger h1 text-center mt-5'>404 Not Found</div>} />
+                    <Route path="*" element={<div className='text-red-700 text-4xl text-center mt-16 font-bold w-full'>404 Not Found</div>} />
                     {/* -----------   /404   ----------- */}
                 </Routes>
             </div>

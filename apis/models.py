@@ -115,9 +115,18 @@ class DireccionPago(Adrress):
 
 
 class WishList(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     cantidad = models.IntegerField(default=0)
     
     class Meta:
         db_table = 'wish_list'
+
+
+class Sessions(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    token = models.CharField(max_length=255)
+    date_created = models.DateTimeField(default=datetime.now)
+    
+    class Meta:
+        db_table = 'sesiones'

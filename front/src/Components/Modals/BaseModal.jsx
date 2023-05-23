@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment, useEffect, useContext } from 'react';
 import { AllContext } from '../../App/MyContext';
 
 function BaseModal(props) {
@@ -9,31 +9,31 @@ function BaseModal(props) {
     const close = () => {
         f.upgradeLvl2('modals', 'exampleBase', 'example', false);
     }
-    const closeModal = e => {
+    const keysDown = e => {
         if (e.key === 'Escape') {
             e.preventDefault();
             close();
         }
     }
     React.useEffect(() => {
-        document.addEventListener('keydown', closeModal);
+        document.addEventListener('keydown', keysDown);
         return () => {
-            document.removeEventListener('keydown', closeModal);
+            document.removeEventListener('keydown', keysDown);
         }
     }, [s.modals?.exampleBase?.example]);
     return (
         <div
-            className="modal-info"
+            className="modal-info flex flex-wrap w-full justify-center items-start"
             style={{...ztyle}}
             onClick={close}
             >
             <div 
-                className={`container modal-container modal-container-50 pb-5 pt-5 my-modal`}
+                className={`flex flex-wrap w-full justify-center items-start modal-container modal-container-50 pb-5 pt-5 my-modal`}
                 style={{...s.styles.basic}}
                 onClick={e => e.stopPropagation()}
                 >
                 Content Here
-                <div className="row justify-content-around">
+                <div className="flex flex-wrap w-full justify-around">
                     And Here :3
                 </div>
             </div>

@@ -41,7 +41,16 @@ const SideBar = () => {
                         // s?.mainContainer?.sideBar
                         f.upgradeLvl1('mainContainer', 'sideBar', !s?.mainContainer?.sideBar);
                     }}>
-                        SideBar
+                        {!!s.login?.user?.nombre ?
+                        <span>
+                            {s.login?.user?.nombre} {s.login?.user?.apellido}
+                        </span> :
+                        <span>
+                            <Link to="login">
+                                Iniciar sesión
+                            </Link>
+                        </span>
+                        }
                     </p>
             </div>
         </React.Fragment>

@@ -45,4 +45,8 @@ header {
             }
         }
     }
+    .user-menu-modal-container {
+        backdrop-filter: blur(8px);
+        background-color: #0004;
+    }
 }

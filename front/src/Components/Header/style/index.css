@@ -38,4 +38,9 @@ header #header-container .menu-container {
 }
 header #header-container .menu-container .menu-button {
   height: 38px;
+}
+header .user-menu-modal-container {
+  -webkit-backdrop-filter: blur(8px);
+          backdrop-filter: blur(8px);
+  background-color: rgba(0, 0, 0, 0.2666666667);
 }/*# sourceMappingURL=index.css.map */

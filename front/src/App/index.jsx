@@ -19,7 +19,8 @@ const BgTheme = () => {
 }
 
 function AppUI() {
-    const { s, ls, f, hp } = React.useContext(AllContext);
+    const { s, ls, f, hp, useNavigate } = React.useContext(AllContext);
+    const navigate = useNavigate();
 
     const abierto = ([false, true].includes(s?.mainContainer?.sideBar) ? s?.mainContainer?.sideBar : true) || !!s?.hovers?.sidebar;
 
@@ -46,6 +47,12 @@ function AppUI() {
         validarSize();
         window.addEventListener('resize', validarSize);
     }, []);
+
+    useEffect(() => {
+        const url = s?.stateNavigation?.location;
+        if (!url) return;
+        navigate(url);
+    }, [s?.stateNavigation?.location, s?.stateNavigation?.reload]);
 
     // -------------------   Set cookies from front this can be use for validate login   ------------------- //
     React.useEffect(() => {

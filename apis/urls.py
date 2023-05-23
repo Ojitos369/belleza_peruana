@@ -1,7 +1,6 @@
-from django.urls import path
+from django.urls import path, include
 
-from apis.api import GuardarUsuario
-
+app_name = 'apis'
 urlpatterns = [
-    path('guardar_usuario/', GuardarUsuario.as_view(), name='guardar_usuario'),
+    path('user/', include('apis.user.urls')),
 ]
