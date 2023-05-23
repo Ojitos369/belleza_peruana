@@ -23,6 +23,10 @@ class GuardarUsuario(PostApi):
         telefono = get_d(self.data, 'telefono', default=None)
         activo = True
         
+        users = User.objects.filter(correo=correo)
+        if users:
+            raise self.MYE('Ya existe un usuario con ese correo')
+        
         if password:
             password = make_password(password)
         
