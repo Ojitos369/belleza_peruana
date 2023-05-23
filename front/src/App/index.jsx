@@ -2,10 +2,10 @@ import React, { Fragment, useEffect } from 'react';
 import { MyContext } from './MyContext';
 import { AllContext } from './MyContext';
 import { Theme } from '../Components/Theme';
-import { Test } from '../Components/Test';
-import { Items } from '../Components/Items';
 
-import { Route, Routes, Navigate } from 'react-router-dom';
+import { Main } from '../Components/Main';
+import { Header } from '../Components/Header';
+import { SideBar } from '../Components/SideBar';
 
 
 const BgTheme = () => {
@@ -20,6 +20,8 @@ const BgTheme = () => {
 
 function AppUI() {
     const { s, ls, f, hp } = React.useContext(AllContext);
+
+    const abierto = ([false, true].includes(s?.mainContainer?.sideBar) ? s?.mainContainer?.sideBar : true) || !!s?.hovers?.sidebar;
 
     React.useEffect(() => {
         f.validateRunMode();
@@ -39,37 +41,23 @@ function AppUI() {
         const miCookie = "miCookie=" + 'data_de_mi_cookie' + ";" + expires + ";path=/";
         document.cookie = miCookie;
 
-        f.helloWorld();
     }, []);
 
     return (
-        <div className={`text-${s.classNames.less}`}>
+        <div className="flex w-full flex-wrap">
             <BgTheme />
-            <Routes>
-                {/* -----------   Home   ----------- */}
-                <Route
-                    path="/"
-                    element={
-                        <Items />
-                    }
-                />
-                {/* -----------   /Home   ----------- */}
+             <nav className={`flex ${abierto ? 'short-div-abierto' : 'short-div-cerrado'}`}>
+                <SideBar />
+            </nav>
 
-
-                {/* -----------   Test   ----------- */}
-                <Route
-                    path="test"
-                    element={
-                        <Test />
-                    }
-                />
-                {/* -----------   /Test   ----------- */}
-
-                {/* -----------   404   ----------- */}
-                <Route path="*/" element={<div className='text-danger h1 text-center mt-5'>404 Not Found</div>} />
-                {/* -----------   /404   ----------- */}
-
-            </Routes>
+            <div 
+                className={`flex flex-wrap ${abierto ? 'large-div-abierto' : 'large-div-cerrado'} justify-start items-start content-start`}
+                id="main-container">
+                <header className='w-full flex h-[60px]'>
+                    <Header abierto={abierto}/>
+                </header>
+                <Main />
+            </div>
         </div>
     );
 }

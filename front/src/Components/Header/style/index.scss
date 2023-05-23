@@ -1,0 +1,48 @@
+header {
+    box-shadow: 0 2px 5px 0 #8883;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+
+    #header-container {
+        .toggle-menu {
+            height: 100%;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            padding-left: 50px;
+
+            .icon-span {
+                height: 25px;
+                width: 25px;
+                margin: 0;
+                padding: 0;
+            }
+        }
+        
+        .name-center {
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            .big-text {
+                font-size: 1.4rem;
+                color: #055a7c;
+            }
+            .small-text {
+                font-size: 1.2rem;
+            }
+        }
+        
+        .menu-container {
+            height: 100%;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+
+            .menu-button {
+                height: 38px;
+            }
+        }
+    }
+}

@@ -2,15 +2,50 @@
   border: 1px blue solid;
   border-radius: 10px;
   width: 200px;
-  padding: 0;
+  height: 300px;
+  padding: 15px;
   overflow: hidden;
-  img-width: 200px;
-  img-height: 200px;
-  img-border-radius: 10px;
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
+}
+.item-container .fondo {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  filter: blur(5px);
+  z-index: -1;
+}
+.item-container .fondo .sombra {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5333333333);
+  z-index: -1;
+}
+.item-container .img-item {
+  width: 150px;
+  height: 150px;
+  border-radius: 10px;
 }
 .item-container h4 {
   font-size: 10px;
   margin-top: 5px;
+}
+.item-container h4 .title {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+.item-container h4 .cost {
+  font-size: 12px;
+  font-weight: 600;
+  color: #0f0;
 }
 .item-container button {
   margin-top: 5px;

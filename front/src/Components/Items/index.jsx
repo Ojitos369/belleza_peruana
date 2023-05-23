@@ -11,7 +11,7 @@ function Items() {
     return (
         <Fragment>
             <div 
-                className="flex flex-wrap w-full justify-start p-8"
+                className="flex flex-wrap w-full justify-start  pl-8"
                 >
             <Item 
                 img={img1}
@@ -27,19 +27,28 @@ function Items() {
 
 const Item = (props) => {
     return (
-        <div className="item-container flex justify-center flex-wrap">
-            <img src={props.img} alt={props.img}/>
-            <h4 className='flex w-10/12 justify-between'
+        <div className="item-container flex justify-center flex-wrap mt-4">
+            <div 
+                className="fondo"
+                style={{backgroundImage: `url(${props.img})`}}
                 >
-                <span className='w-5/12'>
+                    <div className="sombra"></div>
+                </div>
+            <img
+                className='img-item' 
+                src={props.img} 
+                alt={props.img}/>
+            <h4 className='flex w-10/12 justify-between flex-wrap'
+                >
+                <span className='w-full text-start title'>
                     {props.name}
                 </span>
-                <span className='w-4/12'>
+                <span className='w-10/12 text-end cost'>
                     {props.price}
                 </span>
             </h4>
             <button>
-                Comprar
+                Agregar al carrito
             </button>
 
         </div>

@@ -11,3 +11,10 @@
 .moon-secondary{
     fill: var(--my-yellow);
 }
+
+.bars-primary {
+    fill: var(--my-minor);
+}
+.bars-secondary {
+    fill: var(--my-primary);
+}

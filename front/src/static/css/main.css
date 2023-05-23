@@ -1,0 +1,53 @@
+.short-div-abierto {
+    animation: abriendoChico 0.5s;
+    width: 180px;
+}
+.large-div-abierto {
+    animation: abriendoGrande 0.5s;
+    width: calc(100% - 180px);
+}
+
+.short-div-cerrado {
+    animation: cerrandoChico 0.5s;
+    width: 60px;
+}
+.large-div-cerrado {
+    animation: cerrandoGrande 0.5s;
+    width: calc(100% - 60px);
+}
+
+@keyframes abriendoChico {
+    0% {
+        width: 60px;
+    }
+    100% {
+        width: 180px;
+    }
+}
+
+@keyframes cerrandoChico {
+    0% {
+        width: 180px;
+    }
+    100% {
+        width: 60px;
+    }
+}
+
+@keyframes abriendoGrande {
+    0% {
+        width: calc(100% - 60px);
+    }
+    100% {
+        width: calc(100% - 180px);
+    }
+}
+
+@keyframes cerrandoGrande {
+    0% {
+        width: calc(100% - 180px);
+    }
+    100% {
+        width: calc(100% - 60px);
+    }
+}
