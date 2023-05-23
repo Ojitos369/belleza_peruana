@@ -208,6 +208,81 @@ class functions {
         })
     }
 
+    productos = {
+        getProductos: () => {
+            const productos = [
+                {
+                    id: 1,
+                    name: 'Gel Limpieza Profunda',
+                    photo: 'https://media-la-cdn.oriflame.com/productImage/?externalMediaId=product-management-media%2F42613%2F42613.png%3Fversion%3D1674547227&w=231&bc=%23f5f5f5&ib=%23f5f5f5&h=231&q=90',
+                    description: 'Un Gel',
+                    price: 24.90,
+                    category: 'facial',
+                    quantity: 50,
+                    sold: false,
+                    date_created: '',
+                },
+                {
+                    id: 2,
+                    name: 'Miss Giordani Eau de Parfum',
+                    photo: 'https://media-la-cdn.oriflame.com/productImage/?externalMediaId=product-management-media%2F30399%2F30399.png%3Fversion%3D1607430601&w=231&bc=%23f5f5f5&ib=%23f5f5f5&h=231&q=90',
+                    description: 'Un Perfume',
+                    price: 49.90,
+                    category: 'olor',
+                    quantity: 45,
+                    sold: false,
+                    date_created: '',
+                },
+                {
+                    id: 1,
+                    name: 'Gel Limpieza Profunda',
+                    photo: 'https://media-la-cdn.oriflame.com/productImage/?externalMediaId=product-management-media%2F42613%2F42613.png%3Fversion%3D1674547227&w=231&bc=%23f5f5f5&ib=%23f5f5f5&h=231&q=90',
+                    description: 'Un Gel',
+                    price: 24.90,
+                    category: 'facial',
+                    quantity: 50,
+                    sold: false,
+                    date_created: '',
+                },
+                {
+                    id: 2,
+                    name: 'Miss Giordani Eau de Parfum',
+                    photo: 'https://media-la-cdn.oriflame.com/productImage/?externalMediaId=product-management-media%2F30399%2F30399.png%3Fversion%3D1607430601&w=231&bc=%23f5f5f5&ib=%23f5f5f5&h=231&q=90',
+                    description: 'Un Perfume',
+                    price: 49.90,
+                    category: 'olor',
+                    quantity: 45,
+                    sold: false,
+                    date_created: '',
+                },
+                {
+                    id: 1,
+                    name: 'Gel Limpieza Profunda',
+                    photo: 'https://media-la-cdn.oriflame.com/productImage/?externalMediaId=product-management-media%2F42613%2F42613.png%3Fversion%3D1674547227&w=231&bc=%23f5f5f5&ib=%23f5f5f5&h=231&q=90',
+                    description: 'Un Gel',
+                    price: 24.90,
+                    category: 'facial',
+                    quantity: 50,
+                    sold: false,
+                    date_created: '',
+                },
+                {
+                    id: 2,
+                    name: 'Miss Giordani Eau de Parfum',
+                    photo: 'https://media-la-cdn.oriflame.com/productImage/?externalMediaId=product-management-media%2F30399%2F30399.png%3Fversion%3D1607430601&w=231&bc=%23f5f5f5&ib=%23f5f5f5&h=231&q=90',
+                    description: 'Un Perfume',
+                    price: 49.90,
+                    category: 'olor',
+                    quantity: 45,
+                    sold: false,
+                    date_created: '',
+                },
+            ]
+            this.upgradeLvl1('listaProductos', 'all', productos);
+            this.upgradeLvl1('listaProductos', 'mostrar', productos);
+        }
+    }
+
     // ------------------------------------------------------------------ //
     // ---------------------------   LEVELS   --------------------------- //
     // ------------------------------------------------------------------ //

@@ -51,3 +51,12 @@
         width: calc(100% - 60px);
     }
 }
+
+@media screen and (max-width: 768px) {
+    .large-div-abierto {
+        width: 100%;
+    }
+    .large-div-cerrado {
+        width: 100%;
+    }
+}

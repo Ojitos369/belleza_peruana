@@ -31,6 +31,22 @@ function AppUI() {
         hp.cambiarThema(ls?.theme)
     }, [ls?.theme]);
 
+    const md = s.sizes?.md;
+
+    const validarSize = () => {
+        const width = window.innerWidth;
+        if (width <= 768) {
+            f.upgradeLvl1('sizes', 'md', true);
+        } else {
+            f.upgradeLvl1('sizes', 'md', false);
+        }
+    }
+
+    useEffect(() => {
+        validarSize();
+        window.addEventListener('resize', validarSize);
+    }, []);
+
     // -------------------   Set cookies from front this can be use for validate login   ------------------- //
     React.useEffect(() => {
         const date = new Date();
@@ -44,9 +60,10 @@ function AppUI() {
     }, []);
 
     return (
-        <div className="flex w-full flex-wrap">
+        <div 
+            className="flex w-full flex-wrap">
             <BgTheme />
-             <nav className={`flex ${abierto ? 'short-div-abierto' : 'short-div-cerrado'}`}>
+             <nav className={`${md && 'hidden'} flex ${abierto ? 'short-div-abierto' : 'short-div-cerrado'}`}>
                 <SideBar />
             </nav>
 

@@ -1,11 +1,16 @@
 .item-container {
-    border: 1px blue solid;
+    // border: 1px blue solid;
     border-radius: 10px;
     width: 200px;
-    height: 300px;
-    padding: 15px;
+    height: 250px;
+    padding: 10px 5px;
     overflow: hidden;
     backdrop-filter: blur(10px);
+    &:hover {
+        .fondo {
+            filter: blur(5px);
+        }
+    }
 
     .fondo {
         width: 100%;
@@ -16,7 +21,7 @@
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
-        filter: blur(5px);
+        filter: blur(2px);
         z-index: -1;
         .sombra {
             width: 100%;
@@ -30,8 +35,8 @@
     }
 
     .img-item {
-        width: 150px;
-        height: 150px;
+        width: 80%;
+        height: 50%;
         border-radius: 10px;
     }
     h4 {
@@ -42,7 +47,7 @@
             font-weight: 600;
         }
         .cost {
-            font-size: 12px;
+            font-size: 0.9rem;
             font-weight: 600;
             color: #0f0;
         }
