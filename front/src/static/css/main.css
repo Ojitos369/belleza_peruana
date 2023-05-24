@@ -9,16 +9,16 @@
 
 .short-div-cerrado {
     animation: cerrandoChico 0.5s;
-    width: 60px;
+    width: 0px;
 }
 .large-div-cerrado {
     animation: cerrandoGrande 0.5s;
-    width: calc(100% - 60px);
+    width: calc(100% - 0px);
 }
 
 @keyframes abriendoChico {
     0% {
-        width: 60px;
+        width: 0px;
     }
     100% {
         width: 180px;
@@ -30,13 +30,13 @@
         width: 180px;
     }
     100% {
-        width: 60px;
+        width: 0px;
     }
 }
 
 @keyframes abriendoGrande {
     0% {
-        width: calc(100% - 60px);
+        width: calc(100% - 0px);
     }
     100% {
         width: calc(100% - 180px);
@@ -48,7 +48,7 @@
         width: calc(100% - 180px);
     }
     100% {
-        width: calc(100% - 60px);
+        width: calc(100% - 0px);
     }
 }
 

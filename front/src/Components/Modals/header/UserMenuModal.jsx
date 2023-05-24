@@ -35,13 +35,15 @@ function UserMenuModal(props) {
                 style={{...s.styles.basic}}
                 onClick={e => e.stopPropagation()}
                 >
-                {!user ?
+                {!user ? 
                 <NotUser
                     Link={Link}
+                    close={close}
                     icons={icons}
                  /> : 
                 <UserOptions
                     Link={Link}
+                    close={close}
                     icons={icons} />
                 }
             </div>
@@ -50,13 +52,14 @@ function UserMenuModal(props) {
 }
 
 const NotUser = props => {
-    const { Link, icons } = props;
+    const { Link, icons, close } = props;
     return (
         <div 
             className="flex flex-wrap w-full justify-center items-start"
             >
                 <Link
                     to="login"
+                    onClick={close}
                     className="flex flex-wrap w-full justify-center items-center text-icon manita mt-3"
                     >
                     <p 
@@ -72,6 +75,7 @@ const NotUser = props => {
 
                 <Link
                     to="sing_up"
+                    onClick={close}
                     className="flex flex-wrap w-full justify-center items-center text-icon manita mt-3"
                     >
                     <p 

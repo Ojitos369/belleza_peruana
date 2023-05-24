@@ -5,6 +5,7 @@ import { Test } from '../Test';
 import { Items } from '../Items';
 import { SingUp } from '../SingUp';
 import { Login } from '../Login';
+import { Separador } from '../Separador';
 
 import { Route, Routes, Navigate } from 'react-router-dom';
 
@@ -59,6 +60,7 @@ const Main = () => {
                     {/* -----------   /404   ----------- */}
                 </Routes>
             </div>
+            <Separador smt="50"/>
         </React.Fragment>
     )
 }

@@ -1,9 +1,6 @@
 header {
     box-shadow: 0 2px 5px 0 #8883;
-    position: sticky;
-    top: 0;
     z-index: 10;
-
     #header-container {
         .toggle-menu {
             height: 100%;
@@ -11,7 +8,6 @@ header {
             justify-content: flex-start;
             align-items: center;
             padding-left: 50px;
-
             .icon-span {
                 height: 25px;
                 width: 25px;
@@ -19,7 +15,6 @@ header {
                 padding: 0;
             }
         }
-        
         .name-center {
             height: 100%;
             display: flex;
@@ -33,7 +28,6 @@ header {
                 font-size: 1.2rem;
             }
         }
-        
         .menu-container {
             height: 100%;
             display: flex;
@@ -42,6 +36,27 @@ header {
 
             .menu-button {
                 height: 38px;
+            }
+        }
+        .cart-button {
+            height: 100%;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            padding-right: 50px;
+            .count-cart {
+                position: relative;
+                top: 0;
+                right: 0;
+                height: 20px;
+                width: 20px;
+                border-radius: 50%;
+                background-color: #055a7c;
+                color: #fff;
+                font-size: 0.8rem;
+                display: flex;
+                justify-content: center;
+                align-items: center;
             }
         }
     }

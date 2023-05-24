@@ -1,7 +1,11 @@
 nav {
     position: sticky;
+    top: 0;
     height: 100vh;
     box-shadow: -10px 0px 30px 0 #8883, -1px 0px 10px 0 #8883;
+    overflow: hidden {
+        y: scroll;
+    };
     #sideBar {
         display: flex;
         justify-content: flex-start;

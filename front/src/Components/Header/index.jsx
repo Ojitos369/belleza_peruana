@@ -43,6 +43,16 @@ const Header = props => {
                     >
                     {icons.userAlien()}
                 </button>
+
+                <button
+                    className="text-icon cart-button manita ml-6"
+                    onClick={toggleUserMenu}
+                    >
+                    {icons.cartShopping()}
+                    <span className='count-cart'>
+                        {s.compras?.itemsAgregados?.length || 0}
+                    </span>
+                </button>
             </div>
             {!!s.modals?.header?.userMenu && 
             <UserMenuModal />}

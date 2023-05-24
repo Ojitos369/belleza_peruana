@@ -1,7 +1,7 @@
 import React, { Fragment, useContext, useEffect, useState } from 'react';
 import { AllContext } from '../../App/MyContext';
+import { AddCantidadModal } from '../Modals/compra/AddCantidadModal';
 
-import img1 from '../../static/img/img1.jpg';
 import './style/index.css';
 
 function Items() {
@@ -17,7 +17,7 @@ function Items() {
     return (
         <Fragment>
             <div 
-                className="flex flex-wrap w-full md:justify-start justify-around px-4 md:px-0 md:pl-8 mt-2"
+                className="flex flex-wrap w-full justify-around px-4 md:px-0 md:pl-8 mt-2"
                 >
             {productos.map((ele, index) => {
                 return (
@@ -25,42 +25,55 @@ function Items() {
                         key={index}
                         ele={ele}
                         hp={hp}
+                        f={f}
                     />
                 )
             })}
             </div>
+            {s.modals?.compras?.addCantidad &&
+            <AddCantidadModal />
+            }
 
         </Fragment>
     )
 }
 
 const Item = (props) => {
-    const { ele, hp } = props;
+    const { ele, hp, f } = props;
+    const addToCart = () => {
+        f.upgradeLvl2('compras', 'agregando', 'item', ele);
+        f.upgradeLvl2('compras', 'agregando', 'amount', 1);
+        f.upgradeLvl2('modals', 'compras', 'addCantidad', true);
+    }
     return (
-        <div className="item-container flex justify-center flex-wrap mt-8 md:ml-12 ml-1">
-            <div 
-                className="fondo"
-                style={{backgroundImage: `url(${ele.photo})`}}
+        <div className="flex justify-center flex-wrap mt-8 px-8">
+            <div className="item-container flex justify-center flex-wrap">
+                <div 
+                    className="fondo"
+                    style={{backgroundImage: `url(${ele.photo})`}}
+                    >
+                        <div className="sombra"></div>
+                    </div>
+                <img
+                    className='img-item' 
+                    src={ele.photo} 
+                    alt={ele.name}/>
+                <h4 className='flex w-10/12 justify-between flex-wrap'
+                    >
+                    <span className='w-full text-start title'>
+                        {ele.name}
+                    </span>
+                    <span className='w-10/12 text-end cost'>
+                        {hp.showCurrency(ele.price)}
+                    </span>
+                </h4>
+                <button
+                    onClick={addToCart}
                 >
-                    <div className="sombra"></div>
-                </div>
-            <img
-                className='img-item' 
-                src={ele.photo} 
-                alt={ele.name}/>
-            <h4 className='flex w-10/12 justify-between flex-wrap'
-                >
-                <span className='w-full text-start title'>
-                    {ele.name}
-                </span>
-                <span className='w-10/12 text-end cost'>
-                    {hp.showCurrency(ele.price)}
-                </span>
-            </h4>
-            <button>
-                Agregar al carrito
-            </button>
+                    Agregar al carrito
+                </button>
 
+            </div>
         </div>
     )
 }

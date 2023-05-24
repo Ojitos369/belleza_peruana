@@ -47,14 +47,14 @@ function Separador(props) {
     smb = {height: `${smb}px`};
 
     let align = props.align || 'center';
-    align = 'justify-content-' + align;
+    align = 'justify-' + align;
 
     let width = props.width || '12';
     width = 'col-' + width;
     
     return (
         <React.Fragment>
-            <div className={`row ${align}`}>
+            <div className={`flex flex-wrap w-full ${align}`}>
                 {/* margin top */}
                 <div 
                     className={`smt ${width}`}
@@ -63,7 +63,7 @@ function Separador(props) {
                 {/* /margin top */}
             </div>
 
-            <div className={`row ${align}`}>
+            <div className={`flex flex-wrap w-full ${align}`}>
                 {/* linea top */}
                 <div 
                     className={`slt ${width}`}
@@ -72,7 +72,7 @@ function Separador(props) {
                 {/* /linea top */}
             </div>
 
-            <div className={`row ${align}`}>
+            <div className={`flex flex-wrap w-full ${align}`}>
                 {/* space top */}
                 <div 
                     className={`sst ${width}`}
@@ -81,7 +81,7 @@ function Separador(props) {
                 {/* /space top */}
             </div>
 
-            <div className={`row ${align}`}>
+            <div className={`flex flex-wrap w-full ${align}`}>
                 {/* linea center */}
                 <div 
                     className={`slc ${width}`}
@@ -90,7 +90,7 @@ function Separador(props) {
                 {/* /linea center */}
             </div>
 
-            <div className={`row ${align}`}>
+            <div className={`flex flex-wrap w-full ${align}`}>
                 {/* space bottom */}
                 <div 
                     className={`ssb ${width}`}
@@ -99,7 +99,7 @@ function Separador(props) {
                 {/* /space bottom */}
             </div>
 
-            <div className={`row ${align}`}>
+            <div className={`flex flex-wrap w-full ${align}`}>
                 {/* linea bottom */}
                 <div 
                     className={`slb ${width}`}
@@ -108,7 +108,7 @@ function Separador(props) {
                 {/* /linea bottom */}
             </div>
 
-            <div className={`row ${align}`}>
+            <div className={`flex flex-wrap w-full ${align}`}>
                 {/* margin bottom */}
                 <div
                     className={`smb ${width}`}

@@ -2,7 +2,7 @@
     // border: 1px blue solid;
     border-radius: 10px;
     width: 200px;
-    height: 250px;
+    height: 280px;
     padding: 10px 5px;
     overflow: hidden;
     backdrop-filter: blur(10px);
@@ -55,7 +55,13 @@
     button {
         margin-top: 5px;
         width: 80%;
-        background-color: blue;
+        background-color: #00f;
         margin-bottom: 10px;
+        border-radius: 8px;
+        padding: 5px;
+        &:hover {
+            background-color: #009;
+            color: #fff;
+        }
     }
 }

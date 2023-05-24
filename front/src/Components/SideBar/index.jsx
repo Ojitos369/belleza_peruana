@@ -36,11 +36,7 @@ const SideBar = () => {
                 onMouseLeave={() => f.upgradeLvl1('hovers', 'sidebar', false)}
                 >
                     <p 
-                        className={`w-full mt-4 ${abierto ? 'text-center' : 'hidden'}`}
-                        onClick={() => {
-                        // s?.mainContainer?.sideBar
-                        f.upgradeLvl1('mainContainer', 'sideBar', !s?.mainContainer?.sideBar);
-                    }}>
+                        className={`w-full mt-4 ${abierto ? 'text-center' : 'hidden'}`}>
                         {!!s.login?.user?.nombre ?
                         <span>
                             {s.login?.user?.nombre} {s.login?.user?.apellido}

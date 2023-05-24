@@ -32,3 +32,24 @@
 .door-open-secondary {
     fill: #bd4d03;
 }
+
+.cart-shopping-primary {
+    fill: var(--my-minor);
+}
+.cart-shopping-secondary {
+    fill: #bd4d03;
+}
+
+.circle-plus-primary {
+    fill: var(--my-minor);
+}
+.circle-plus-secondary {
+    fill: var(--my-success);
+}
+
+.circle-minus-primary {
+    fill: var(--my-minor);
+}
+.circle-minus-secondary {
+    fill: var(--my-danger);
+}
