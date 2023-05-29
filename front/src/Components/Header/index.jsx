@@ -13,6 +13,22 @@ const Header = props => {
         f.upgradeLvl2('modals', 'header', 'userMenu', !s.modals?.header?.userMenu);
     }
 
+    const filtrarItems = e => {
+        let value = e.target.value;
+        let items = [];
+        if (!!value) {
+            value = value.toLowerCase();
+            items = (s.listaProductos?.all || []).filter(item => {
+                const name = item.name.toLowerCase();
+                const description = item.description.toLowerCase();
+                return name.includes(value) || description.includes(value);
+            });
+        } else {
+            items = s.listaProductos?.all || [];
+        }
+        f.upgradeLvl1('listaProductos', 'mostrar', items);
+    }
+
     return (
         <React.Fragment>
             <div 
@@ -30,12 +46,19 @@ const Header = props => {
                     </button>
                 </p>
 
-                <div className="w-8/12 name-center">
+                <div className="w-6/12 name-center">
                     <Link to="/" className="w-full text-center">
                         <b className="text-end big-text">Belleza </b>
                         <span className="text-start small-text">Peruana</span>
                     </Link>
                 </div>
+
+                <input 
+                    type="text"
+                    className="w-1/12 search-bar"
+                    placeholder="Buscar"
+                    onChange={filtrarItems}
+                     />
 
                 <button
                     className="text-icon manita"
