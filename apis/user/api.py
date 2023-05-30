@@ -43,7 +43,7 @@ class GuardarUsuario(PostApi):
         self.response = {
             'message': 'Usuario guardado correctamente'
         }
-        
+
 
 class Login(PostApi):
     def main(self):
@@ -79,5 +79,4 @@ class Login(PostApi):
         self.response = {
             'user': user
         }
-        
-        
+
