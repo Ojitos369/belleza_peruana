@@ -7,6 +7,11 @@ import { SingUp } from '../SingUp';
 import { Login } from '../Login';
 import { Separador } from '../Separador';
 
+import { Articulos } from '../Articulos';
+import { Agregar as ArtAgregar } from '../Articulos/Agregar';
+
+
+
 import { Route, Routes, Navigate } from 'react-router-dom';
 
 const Main = () => {
@@ -44,6 +49,18 @@ const Main = () => {
                         }
                     />
                     {/* -----------   /Login   ----------- */}
+
+                    {/* -----------   Articulos   ----------- */}
+                    <Route
+                        path="articulos"
+                        element={<Articulos />}
+                    >
+                        <Route
+                            path="agregar"
+                            element={<ArtAgregar />}
+                        />
+                    </Route>
+                    {/* -----------   /Articulos   ----------- */}
 
 
                     {/* -----------   Test   ----------- */}

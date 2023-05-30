@@ -66,7 +66,7 @@ function Login() {
                     <button
                         type='submit'
                         className='w-1/2 btn bg-blue-700 hover:bg-blue-900'>
-                        Sing Up
+                        Entrar
                     </button>
                 </div>
                 {/* -------------------------------   /Submit   ------------------------------- */}

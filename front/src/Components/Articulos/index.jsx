@@ -1,16 +1,13 @@
 import React, { Fragment, useContext, useEffect, useState } from 'react';
 import { AllContext } from '../../App/MyContext';
+import { Outlet } from 'react-router-dom';
 
-function MyComponent() {
+function Articulos() {
     const { ls, lf, s, f, Icons } = useContext(AllContext);
     const icons = new Icons();
     return (
-        <Fragment>
-            <div className='flex flex-wrap justify-center w-full'>
-            MyComponent
-            </div>
-        </Fragment>
+        <Outlet />
     )
 }
 
-export { MyComponent };
+export { Articulos };

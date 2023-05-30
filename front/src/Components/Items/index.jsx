@@ -11,7 +11,7 @@ function Items() {
     const productos = s.listaProductos?.mostrar || [];
 
     useEffect(() => {
-        f.productos.getProductos();
+        f.articulos.getProductos();
     }, []);
 
     return (

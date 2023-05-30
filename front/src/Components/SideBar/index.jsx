@@ -48,6 +48,13 @@ const SideBar = () => {
                         </span>
                         }
                     </p>
+
+                    <Link 
+                        className={`w-full mt-4 ${abierto ? 'text-center' : 'hidden'}`}
+                        to="articulos/agregar"
+                        >
+                        Agregar Articulos
+                    </Link>
             </div>
         </React.Fragment>
     )

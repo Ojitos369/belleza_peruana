@@ -256,7 +256,27 @@ class functions {
         },
     }
 
-    productos = {
+    articulos = {
+        crear: () => {
+            const endpoint = 'api/articulos/create/';
+            const data = this.s?.forms?.add_articulo || {};
+            miAxios.post(
+                endpoint,
+                data
+            ).then(response => {
+                MySwal.fire({
+                    icon: 'success',
+                    title: 'Articulo creado',
+                });
+                this.upgradeLvl1('stateNavigation', 'location', '/');
+                this.upgradeLvl1('stateNavigation', 'reload', !this.s.stateNavigation?.reload);
+            }).catch(error => {
+                MySwal.fire({
+                    icon: 'error',
+                    title: 'Error al crear articulo',
+                });
+            });
+        },
         getProductos: () => {
             let productos = [
                 {
