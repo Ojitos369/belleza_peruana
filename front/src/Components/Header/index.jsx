@@ -64,7 +64,8 @@ const Header = props => {
                     className="text-icon manita"
                     onClick={toggleUserMenu}
                     >
-                    {icons.userAlien()}
+                    {/* {icons.userAlien()} */}
+                    {icons.userSecret()}
                 </button>
 
                 <button

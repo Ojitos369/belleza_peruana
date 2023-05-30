@@ -5,7 +5,7 @@ import withReactContent from 'sweetalert2-react-content';
 
 const MySwal = withReactContent(Swal);
 axios.defaults.withCredentials = true
-const link = 'http://localhost:8369/'
+const link = 'http://localhost:8000/'
 const miAxios = axios.create({
     baseURL: link,
 })
@@ -258,7 +258,7 @@ class functions {
 
     productos = {
         getProductos: () => {
-            const productos = [
+            let productos = [
                 {
                     id: 1,
                     name: 'Gel Limpieza Profunda',
@@ -326,8 +326,16 @@ class functions {
                     date_created: '',
                 },
             ]
-            this.upgradeLvl1('listaProductos', 'all', productos);
-            this.upgradeLvl1('listaProductos', 'mostrar', productos);
+
+            const endpoint = 'api/articulos/';
+            miAxios.get(
+                endpoint
+            ).then(response => {
+                productos = response.data;
+                this.upgradeLvl1('listaProductos', 'all', productos);
+                this.upgradeLvl1('listaProductos', 'mostrar', productos);
+            })
+            
         }
     }
 

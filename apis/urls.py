@@ -1,6 +1,6 @@
 from django.urls import path, include
 #aqui
-# from .articulos import views
+from .articulos import views
 
 
 app_name = 'apis'

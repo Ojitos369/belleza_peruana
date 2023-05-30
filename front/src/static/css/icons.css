@@ -53,3 +53,10 @@
 .circle-minus-secondary {
     fill: var(--my-danger);
 }
+
+.user-secret-primary {
+    fill: #090;
+}
+.user-secret-secondary {
+    fill: #000;
+}

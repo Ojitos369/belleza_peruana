@@ -20,7 +20,7 @@ function AddCantidadModal(props) {
         let encontrado = false;
         added = added.map((ele, index) => {
             if (ele.id === id) {
-                ele.amount += s.compras?.agregando?.amount || 0;
+                ele.cantidad += s.compras?.agregando?.cantidad || 0;
                 encontrado = true;
             }
             return ele;
@@ -60,22 +60,22 @@ function AddCantidadModal(props) {
                 <div className="w-10/12 md:w-5/12 flex flex-col justify-start items-center ele-data">
                     <div className="w-full justify-center flex">
                         <img 
-                            src={ele.photo} 
-                            alt={ele.name}
+                            src={ele.url} 
+                            alt={ele.titulo}
                             className="ele-img"
                             />
                     </div>
                     <div className="w-8/12 mt-1 ele-name">
-                        <h2 className="text-start text-2xl font-bold">{ele.name}</h2>
+                        <h2 className="text-start text-2xl font-bold">{ele.titulo}</h2>
                     </div>
                     <div className="w-8/12 mt-1 ele-price">
-                        <h3 className="text-end text-xl font-bold">{hp.showCurrency(ele.price)}</h3>
+                        <h3 className="text-end text-xl font-bold">{hp.showCurrency(ele.precio)}</h3>
                     </div>
                 </div>
 
-                <div className="w-10/12 md:w-5/12 flex flex-col justify-center items-start ele-amount">
+                <div className="w-10/12 md:w-5/12 flex flex-col justify-center items-start ele-cantidad">
                     <div className="w-9/12 mt-1 ele-desc">
-                        <h3 className="text-start">{ele.description}</h3>
+                        <h3 className="text-start">{ele.descripcion}</h3>
                     </div>
                     <div className="w-full flex flex-wrap justify-center mt-4">
                         <h2 className="text-center text-xl mt-4">Cantidad</h2>
@@ -86,11 +86,11 @@ function AddCantidadModal(props) {
                             <button
                                 className="h-[40px] w-[40px]"
                                 onClick={() => {
-                                    let cantidad = s.compras?.agregando?.amount || 0;
+                                    let cantidad = s.compras?.agregando?.cantidad || 0;
                                     if (cantidad < 1) {
                                         return;
                                     }
-                                    f.upgradeLvl2('compras', 'agregando', 'amount', s.compras?.agregando?.amount - 1)
+                                    f.upgradeLvl2('compras', 'agregando', 'cantidad', cantidad - 1)
                                 }}
                                 >
                                 {icons.circleMinus()}
@@ -99,20 +99,20 @@ function AddCantidadModal(props) {
                         <div className='w-1/2'>
                             <input 
                                 type="text" 
-                                name="amount" 
-                                id="ele-amount"
+                                name="cantidad" 
+                                id="ele-cantidad"
                                 className="text-center rounded-md text-black w-full h-[40px] text-xl"
-                                value={s.compras?.agregando?.amount || 0}
+                                value={s.compras?.agregando?.cantidad || 0}
                                 onChange={e => {
                                     let cantidad = parseInt(e.target.value);
                                     if (isNaN(cantidad)) {
                                         cantidad = 0;
-                                    } else if (cantidad > (ele.quantity || 0)) {
-                                        cantidad = ele.quantity || 0;
+                                    } else if (cantidad > (ele.cantidad || 0)) {
+                                        cantidad = ele.cantidad || 0;
                                     } else if (cantidad < 0) {
                                         cantidad = 0;
                                     }
-                                    f.upgradeLvl2('compras', 'agregando', 'amount', cantidad);
+                                    f.upgradeLvl2('compras', 'agregando', 'cantidad', cantidad);
                                 }}
                                     />
                         </div>
@@ -120,11 +120,11 @@ function AddCantidadModal(props) {
                             <button
                                 className="h-[40px] w-[40px]"
                                 onClick={() => {
-                                    let cantidad = s.compras?.agregando?.amount || 0;
-                                    if (cantidad > (ele.quantity || 0)) {
+                                    let cantidad = s.compras?.agregando?.cantidad || 0;
+                                    if (cantidad > (ele.cantidad || 0)) {
                                         return;
                                     }
-                                    f.upgradeLvl2('compras', 'agregando', 'amount', s.compras?.agregando?.amount + 1)
+                                    f.upgradeLvl2('compras', 'agregando', 'cantidad', cantidad + 1)
                                 }}
                                 >
                                 {icons.circlePlus()}
@@ -141,7 +141,7 @@ function AddCantidadModal(props) {
                         <p
                             className="text-end text-2xl mt-4 text-[var(--my-success)] font-bold"
                             >
-                            {hp.showCurrency((ele.price || 0) * (s.compras?.agregando?.amount || 0))}
+                            {hp.showCurrency((ele.precio || 0) * (s.compras?.agregando?.cantidad || 0))}
                         </p>
                     </div>
                 </div>

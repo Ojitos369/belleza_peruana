@@ -50,21 +50,21 @@ const Item = (props) => {
             <div className="item-container flex justify-center flex-wrap">
                 <div 
                     className="fondo"
-                    style={{backgroundImage: `url(${ele.photo})`}}
+                    style={{backgroundImage: `url(${ele.url})`}}
                     >
                         <div className="sombra"></div>
                     </div>
                 <img
                     className='img-item' 
-                    src={ele.photo} 
-                    alt={ele.name}/>
+                    src={ele.url} 
+                    alt={ele.titulo}/>
                 <h4 className='flex w-10/12 justify-between flex-wrap'
                     >
                     <span className='w-full text-start title'>
-                        {ele.name}
+                        {ele.titulo}
                     </span>
                     <span className='w-10/12 text-end cost'>
-                        {hp.showCurrency(ele.price)}
+                        {hp.showCurrency(ele.precio)}
                     </span>
                 </h4>
                 <button

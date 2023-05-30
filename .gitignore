@@ -2,6 +2,7 @@ env
 ven
 venv
 */migrations
+*migrations/
 *.sqlite3
 *__pycache__*
 

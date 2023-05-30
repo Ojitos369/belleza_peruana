@@ -41,7 +41,6 @@ if not prod_mode:
 
 
 INSTALLED_APPS = [
-    'apis',
     'apis.articulos',
     'django.contrib.admin',
     'django.contrib.auth',
