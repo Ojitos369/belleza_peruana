@@ -19,9 +19,9 @@ const Header = props => {
         if (!!value) {
             value = value.toLowerCase();
             items = (s.listaProductos?.all || []).filter(item => {
-                const name = item.name.toLowerCase();
-                const description = item.description.toLowerCase();
-                return name.includes(value) || description.includes(value);
+                const titulo = item.titulo.toLowerCase();
+                const descripcion = item.descripcion.toLowerCase();
+                return titulo.includes(value) || descripcion.includes(value);
             });
         } else {
             items = s.listaProductos?.all || [];
