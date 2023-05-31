@@ -42,7 +42,7 @@ const SideBar = () => {
                             {s.login?.user?.nombre} {s.login?.user?.apellido}
                         </span> :
                         <span>
-                            <Link to="login">
+                            <Link to="login" className="text-[var(--my-minor)]">
                                 Iniciar sesión
                             </Link>
                         </span>
@@ -50,7 +50,7 @@ const SideBar = () => {
                     </p>
 
                     <Link 
-                        className={`w-full mt-4 ${abierto ? 'text-center' : 'hidden'}`}
+                        className={`w-full text-[var(--my-minor)] mt-4 ${abierto ? 'text-center' : 'hidden'}`}
                         to="articulos/agregar"
                         >
                         Agregar Articulos

@@ -164,10 +164,12 @@ body::-webkit-scrollbar {
 .bg-my-black {
     transition: all 0.5s;
     background: #212121;
+    background-image: linear-gradient(to bottom, #212121, #212121, #212121, #212121, #212121, #212024, #211f27, #221e29, #251b2e, #2a1631, #310f33, #390432);
     color: #fff;
 }
 .bg-my-white {
     transition: all 0.5s;
     background: #ffffff;
+    background-image: linear-gradient(to bottom, #ffffff, #ffffff, #ffffff, #ffffff, #ffffff, #f7f7fa, #f0eef4, #e9e6ef, #dbd3e2, #cec1d4, #c3aec5, #b99bb5);
     color: #000;
 }

@@ -49,7 +49,7 @@ const Header = props => {
                 <div className="w-6/12 name-center">
                     <Link to="/" className="w-full text-center">
                         <b className="text-end big-text">Belleza </b>
-                        <span className="text-start small-text">Peruana</span>
+                        <span className="text-start small-text text-[var(--my-minor)]">Peruana</span>
                     </Link>
                 </div>
 

@@ -9,10 +9,15 @@ import { SideBar } from '../Components/SideBar';
 
 
 const BgTheme = () => {
-    const { ls } = React.useContext(AllContext);
+    const { ls, Icons } = React.useContext(AllContext);
+    const icons = new Icons();
     return (
         <Fragment>
-            <div className={`wipeInDown full-page-container bg-my-${ls.theme}`}></div>
+            <div className={`wipeInDown full-page-container bg-my-${ls.theme}`}>
+                <div id="fondo-color" className='row col-12'>
+                    {icons.onda()}
+                </div>
+            </div>
             <Theme />
         </Fragment>
     )
