@@ -4,6 +4,9 @@ from datetime import datetime
 # Django
 from django.db import models
 
+# User
+from .articulos.models import Articulo
+
 
 class User(models.Model):
     nombre = models.CharField(max_length=255)
@@ -24,23 +27,17 @@ class Category(models.Model):
         db_table = 'categorias'
 
 
-class Product(models.Model):
-    name = models.CharField(max_length=255)
-    photo = models.CharField(max_length=255)
-    description = models.TextField()
-    price = models.DecimalField(max_digits=6, decimal_places=2)
+class CategoryArticulo(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
-    quantity = models.IntegerField(default=0)
-    sold = models.IntegerField(default=0)
-    date_created = models.DateTimeField(default=datetime.now)
+    articulo = models.ForeignKey(Articulo, on_delete=models.CASCADE)
     
     class Meta:
-        db_table = 'productos'
+        db_table = 'categorias_articulos'
 
 
 class CartItem(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    articulo = models.ForeignKey(Articulo, on_delete=models.CASCADE)
     count = models.IntegerField()
     
     class Meta:
@@ -81,7 +78,7 @@ class Order(models.Model):
 
 
 class OrderItem(models.Model):
-    product = models.ForeignKey(Product, on_delete=models.DO_NOTHING)
+    articulo = models.ForeignKey(Articulo, on_delete=models.DO_NOTHING)
     order = models.ForeignKey(Order, on_delete=models.CASCADE)
     # name = models.CharField(max_length=255)
     # price = models.DecimalField(max_digits=5, decimal_places=2)
@@ -116,7 +113,7 @@ class DireccionPago(Adrress):
 
 class WishList(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    articulo = models.ForeignKey(Articulo, on_delete=models.CASCADE)
     cantidad = models.IntegerField(default=0)
     
     class Meta:
