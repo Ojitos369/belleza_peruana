@@ -28,8 +28,8 @@ class Category(models.Model):
 
 
 class CategoryArticulo(models.Model):
-    category = models.ForeignKey(Category, on_delete=models.CASCADE)
     articulo = models.ForeignKey(Articulo, on_delete=models.CASCADE)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE)
     
     class Meta:
         db_table = 'categorias_articulos'
