@@ -22,7 +22,7 @@ header {
             align-items: center;
             .big-text {
                 font-size: 1.4rem;
-                color: #055a7c;
+                color: #ffc0cb;
             }
             .small-text {
                 font-size: 1.2rem;
@@ -32,17 +32,16 @@ header {
             height: 38px;
             width: 300px;
             border-radius: 5px;
-            border: 1px solid #055a7c;
+            border: 1px solid #ffc0cb;
             padding: 0 10px;
             font-size: 1rem;
-            color: #055a7c;
+            color: #ffc0cb;
         }
         .menu-container {
             height: 100%;
             display: flex;
             justify-content: flex-start;
             align-items: center;
-
             .menu-button {
                 height: 38px;
             }
@@ -60,8 +59,8 @@ header {
                 height: 20px;
                 width: 20px;
                 border-radius: 50%;
-                background-color: #055a7c;
-                color: #fff;
+                background-color: #ffc0cb;
+                color: #000;
                 font-size: 0.8rem;
                 display: flex;
                 justify-content: center;

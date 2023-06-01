@@ -23,7 +23,7 @@ header #header-container .name-center {
 }
 header #header-container .name-center .big-text {
   font-size: 1.4rem;
-  color: #055a7c;
+  color: #ffc0cb;
 }
 header #header-container .name-center .small-text {
   font-size: 1.2rem;
@@ -32,10 +32,10 @@ header #header-container .search-bar {
   height: 38px;
   width: 300px;
   border-radius: 5px;
-  border: 1px solid #055a7c;
+  border: 1px solid #ffc0cb;
   padding: 0 10px;
   font-size: 1rem;
-  color: #055a7c;
+  color: #ffc0cb;
 }
 header #header-container .menu-container {
   height: 100%;
@@ -60,8 +60,8 @@ header #header-container .cart-button .count-cart {
   height: 20px;
   width: 20px;
   border-radius: 50%;
-  background-color: #055a7c;
-  color: #fff;
+  background-color: #ffc0cb;
+  color: #000;
   font-size: 0.8rem;
   display: flex;
   justify-content: center;

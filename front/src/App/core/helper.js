@@ -2,8 +2,14 @@ const helper = {
     cambiarThema: thema => {
         const minor = thema === 'black' ? '#ffffff' : '#212121';
         const major = thema === 'black' ? '#212121' : '#ffffff';
+
+        const stop1 = thema === 'black' ? '#000' : '#aaa';
+        const stop2 = thema === 'black' ? '#ffc0cb11' : '#ffc0cb11';
+
         document.documentElement.style.setProperty('--my-minor', minor);
         document.documentElement.style.setProperty('--my-major', major);
+        document.documentElement.style.setProperty('--stop-1', stop1);
+        document.documentElement.style.setProperty('--stop-2', stop2);
         return 
     },
     getFloatCurrency: (text) => {
