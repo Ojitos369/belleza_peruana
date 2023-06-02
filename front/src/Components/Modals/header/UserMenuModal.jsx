@@ -2,7 +2,7 @@ import React, { Fragment, useEffect, useContext } from 'react';
 import { AllContext } from '../../../App/MyContext';
 
 function UserMenuModal(props) {
-    const { Link, Icons, s, f } = useContext(AllContext);
+    const { Link, Icons, s, f, lf } = useContext(AllContext);
     const icons = new Icons();
     
     const ztyle = props.zindex ? {zIndex: props.zindex} : {};
@@ -39,10 +39,12 @@ function UserMenuModal(props) {
                 <NotUser
                     Link={Link}
                     close={close}
+                    lf={lf}
                     icons={icons}
                  /> : 
                 <UserOptions
                     Link={Link}
+                    lf={lf}
                     close={close}
                     icons={icons} />
                 }
@@ -52,7 +54,7 @@ function UserMenuModal(props) {
 }
 
 const NotUser = props => {
-    const { Link, icons, close } = props;
+    const { Link, icons, close, lf } = props;
     return (
         <div 
             className="flex flex-wrap w-full justify-center items-start"
@@ -92,7 +94,31 @@ const NotUser = props => {
     )
 }
 const UserOptions = props => {
-
+    const { Link, icons, close, lf } = props;
+    return (
+        <div 
+            className="flex flex-wrap w-full justify-center items-start"
+            >
+                <Link
+                    to="/"
+                    onClick={() => {
+                        lf.cerrarSesion();
+                        close();
+                    }}
+                    className="flex flex-wrap w-full justify-center items-center text-icon manita mt-3"
+                    >
+                    <p 
+                        className="flex flex-wrap w-1/2 md:w-1/4 justify-around items-start text-icon manita">
+                        <span className="mr-2 icon-text">
+                            {icons.doorOpen()}
+                        </span>
+                        <span>
+                            Cerrar sesion
+                        </span>
+                    </p>
+                </Link>
+        </div>
+    )
 }
 
 export { UserMenuModal };

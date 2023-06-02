@@ -6,14 +6,17 @@ import json
 from django.contrib.auth.hashers import make_password, check_password
 from django.forms.models import model_to_dict as md
 
+# Ojitos369
+from ojitos369.utils import generate_token
+
 # User
-from app.core.bases.apis import PostApi, GetApi, get_d, pln
+from app.core.bases.apis import PostApi, GetApi, NoSession, get_d, pln
 
 # Models
-from apis.models import User, Sessions
-from app.core.tools.functions import generate_token
+from apis.models import User, Sessions, UserPermisos
 
-class GuardarUsuario(PostApi):
+
+class GuardarUsuario(NoSession, PostApi):
     def main(self):
         pln('GuardarUsuario')
         nombre = get_d(self.data, 'nombre', default=None)
@@ -40,12 +43,16 @@ class GuardarUsuario(PostApi):
         
         usuario.save()
         
+        permiso = UserPermisos()
+        permiso.user = usuario
+        permiso.permiso = 'gen'
+        
         self.response = {
             'message': 'Usuario guardado correctamente'
         }
 
 
-class Login(PostApi):
+class Login(NoSession, PostApi):
     def main(self):
         pln('Login')
         correo = get_d(self.data, 'correo', default=None)
@@ -73,10 +80,25 @@ class Login(PostApi):
         sesion.save()
         del user.password
         del user.activo
+
+        permisos = UserPermisos.objects.filter(user=user)
+
         user = md(user)
         user['token'] = token
+        user['permisos'] = [p.permiso for p in permisos]
         
         self.response = {
             'user': user
         }
+
+
+class ValidateLogin(GetApi):
+    def main(self):
+        pln('ValidateLogin')
+        user = md(self.user)
+        user['permisos'] = self.permisos
+        self.response = {
+            'user': user
+        }
+
 

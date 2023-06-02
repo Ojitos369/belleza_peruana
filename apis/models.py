@@ -9,12 +9,12 @@ from .articulos.models import Articulo
 
 
 class User(models.Model):
-    nombre = models.CharField(max_length=255)
-    apellido = models.CharField(max_length=255)
-    correo = models.CharField(max_length=255)
-    password = models.CharField(max_length=255)
-    telefono = models.CharField(max_length=255)
-    activo = models.BooleanField(default=True)
+    nombre = models.CharField(max_length=255, default=None, null=True, blank=True)
+    apellido = models.CharField(max_length=255, default=None, null=True, blank=True)
+    correo = models.CharField(max_length=255, default=None, null=True, blank=True)
+    password = models.CharField(max_length=255, default=None, null=True, blank=True)
+    telefono = models.CharField(max_length=255, default=None, null=True, blank=True)
+    activo = models.BooleanField(default=True, null=True, blank=True)
     
     class Meta:
         db_table = 'users'
@@ -90,12 +90,12 @@ class OrderItem(models.Model):
 
     
 class Adrress(models.Model):
-    address_line_1 = models.CharField(max_length=255)
-    address_line_2 = models.CharField(max_length=255, blank=True)
-    city = models.CharField(max_length=255)
-    state_province_region = models.CharField(max_length=255)
-    postal_zip_code = models.CharField(max_length=20)
-    country_region = models.CharField(max_length=255)
+    address_line_1 = models.CharField(max_length=255, default=None, null=True, blank=True)
+    address_line_2 = models.CharField(max_length=255, default=None, null=True, blank=True)
+    city = models.CharField(max_length=255, default=None, null=True, blank=True)
+    state_province_region = models.CharField(max_length=255, default=None, null=True, blank=True)
+    postal_zip_code = models.CharField(max_length=20, default=None, null=True, blank=True)
+    country_region = models.CharField(max_length=255, default=None, null=True, blank=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     class Meta:
@@ -127,3 +127,11 @@ class Sessions(models.Model):
     
     class Meta:
         db_table = 'sesiones'
+
+
+class UserPermisos(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    permiso = models.CharField(max_length=255)
+    
+    class Meta:
+        db_table = 'permisos_usuarios'

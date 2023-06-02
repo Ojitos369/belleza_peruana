@@ -2,7 +2,7 @@
 def generate_token(length=225, exclude=[]):
     if type(exclude) == str:
         exclude = list(exclude)
-    exclude += ['"', "'", '\\', '`']
+    exclude += ['"', "'", '\\', '`', ';', ',', ' ', '']
     # Import lyrics, numbers and symbols
     from string import ascii_letters, digits, punctuation
     import random

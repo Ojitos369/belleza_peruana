@@ -8,7 +8,7 @@ axios.defaults.withCredentials = true
 const link = 'http://localhost:8369/'
 const miAxios = axios.create({
     baseURL: link,
-})
+});
 
 
 const actionTypes = {
@@ -224,29 +224,6 @@ class functions {
                 this.upgradeLvl1('stateNavigation', 'reload', !this.s.stateNavigation?.reload);
             }).catch(error => {
                 this.upgradeLvl1('loadings', 'singUp', false);
-                let message = error.response.data.message;
-                this.alertSwal({
-                    icon: 'error',
-                    message: message,
-                });
-            });
-        },
-        login: (props) => {
-            this.upgradeLvl1('loadings', 'login', true);
-            const endpoint = 'api/user/login/';
-            const formData = this.s.forms?.login || {};
-            miAxios.post(
-                endpoint,
-                formData
-            ).then(response => {
-                this.upgradeLvl1('loadings', 'login', false);
-                const user = response.data.user;
-                this.upgradeLvl1('forms', 'login', {});
-                this.upgradeLvl1('login', 'user', user);
-                this.upgradeLvl1('stateNavigation', 'location', '/');
-                this.upgradeLvl1('stateNavigation', 'reload', !this.s.stateNavigation?.reload);
-            }).catch(error => {
-                this.upgradeLvl1('loadings', 'login', false);
                 let message = error.response.data.message;
                 this.alertSwal({
                     icon: 'error',

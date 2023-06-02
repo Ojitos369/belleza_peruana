@@ -6,7 +6,7 @@ import json
 from django.forms.models import model_to_dict as md
 
 # User
-from app.core.bases.apis import PostApi, GetApi, get_d, pln
+from app.core.bases.apis import PostApi, GetApi, NoSession, get_d, pln
 
 # Models
 from apis.articulos.models import Articulo
@@ -90,7 +90,7 @@ class ArticuloUpdate(PostApi):
         self.response = model
 
 
-class ArticuloList(GetApi):
+class ArticuloList(NoSession, GetApi):
     def main(self):
         pln('ArticuloList')
         
@@ -110,7 +110,7 @@ class ArticuloList(GetApi):
         self.response = articulos
 
 
-class ArticuloDetail(GetApi):
+class ArticuloDetail(NoSession, GetApi):
     def main(self):
         pln('ArticuloDetail')
 

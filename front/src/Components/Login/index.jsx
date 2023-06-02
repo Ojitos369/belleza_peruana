@@ -13,14 +13,14 @@ function Login() {
 
     const submitForm = e => {
         e.preventDefault();
-        f.login.login();
+        lf.login();
     }
 
     return (
         <Fragment>
             <div className='flex flex-wrap justify-center w-full text-[var(--my-minor)]'>
                 <h2 className={`text-center w-full mt-3 font-bold text-3xl`}>
-                    Sing Up
+                    Login
                 </h2>
             </div>
             {/* nombre, apellido, correo, password, telefono */}

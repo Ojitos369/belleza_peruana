@@ -6,6 +6,7 @@ import { Theme } from '../Components/Theme';
 import { Main } from '../Components/Main';
 import { Header } from '../Components/Header';
 import { SideBar } from '../Components/SideBar';
+import { Loading } from '../Components/Loading';
 
 
 const BgTheme = () => {
@@ -57,36 +58,35 @@ function AppUI() {
         navigate(url);
     }, [s?.stateNavigation?.location, s?.stateNavigation?.reload]);
 
-    // -------------------   Set cookies from front this can be use for validate login   ------------------- //
-    useEffect(() => {
-        const date = new Date();
-        const miliseconds = 1000 * 60 * 60 * 10;
-        date.setTime(date.getTime() + (miliseconds));
-        const dateExpired = date.toUTCString();
-        const expires = 'expires=' + dateExpired
-        const miCookie = "miCookie=" + 'data_de_mi_cookie' + ";" + expires + ";path=/";
-        document.cookie = miCookie;
-
-    }, []);
-
-    return (
-        <div 
-            className="flex w-full flex-wrap">
-            <BgTheme />
-             <nav className={`${md && 'hidden'} flex ${abierto ? 'short-div-abierto' : 'short-div-cerrado'}`}>
-                <SideBar />
-            </nav>
-
+    if (!s.loadings?.init ) {
+        return (
             <div 
-                className={`flex flex-wrap ${abierto ? 'large-div-abierto' : 'large-div-cerrado'} justify-start items-start content-start`}
-                id="main-container">
-                <header className='w-full flex h-[60px]'>
-                    <Header abierto={abierto}/>
-                </header>
-                <Main />
+                className="flex w-full flex-wrap">
+                <BgTheme />
+                <nav className={`${md && 'hidden'} flex ${abierto ? 'short-div-abierto' : 'short-div-cerrado'}`}>
+                    <SideBar />
+                </nav>
+
+                <div 
+                    className={`flex flex-wrap ${abierto ? 'large-div-abierto' : 'large-div-cerrado'} justify-start items-start content-start`}
+                    id="main-container">
+                    <header className='w-full flex h-[60px]'>
+                        <Header abierto={abierto}/>
+                    </header>
+                    <Main />
+                </div>
             </div>
-        </div>
-    );
+        );
+    } else {
+        return (
+            <div className="flex w-full flex-wrap">
+                <BgTheme />
+                <div className="flex flex-wrap w-full justify-center items-center content-center">
+                    <Loading />
+                </div>
+            </div>
+        )
+    }
 }
 
 const Effect = () => {

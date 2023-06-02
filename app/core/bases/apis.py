@@ -14,6 +14,7 @@ from ojitos369.utils import get_d, print_line_center, printwln as pln
 
 # User
 from app.settings import MYE, prod_mode, ce
+from apis.models import User, Sessions, UserPermisos
 
 class BaseApi(APIView):
     status = 200
@@ -48,8 +49,17 @@ class BaseApi(APIView):
     def validate_session(self):
         request = self.request
         cookies = request.COOKIES
-        mi_cookie = get_d(cookies, 'miCookie', default='')
+        mi_cookie = get_d(cookies, 'bpt', default='')
         pln(mi_cookie)
+        sessions = Sessions.objects.filter(token=mi_cookie, date_created__gte=timezone.now() - datetime.timedelta(hours=12))
+        if not sessions:
+            self.status = 401
+            raise self.MYE('Sesion no valida')
+
+        self.user = sessions[0].user
+        permisos = UserPermisos.objects.filter(user=self.user)
+        self.permisos = [permiso.permiso for permiso in permisos]
+        
 
     def validar_permiso(self, usuarios_validos):
         pass
@@ -84,3 +94,7 @@ class GetApi(BaseApi):
             return self.response
         elif self.response_mode == 'json':
             return Response(self.response, status=self.status)
+
+class NoSession:
+    def validate_session(self):
+        pass

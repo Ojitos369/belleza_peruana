@@ -1,4 +1,15 @@
 import React from "react";
+import axios from "axios";
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
+
+
+const MySwal = withReactContent(Swal);
+axios.defaults.withCredentials = true
+const link = 'http://localhost:8369/'
+const miAxios = axios.create({
+    baseURL: link,
+});
 
 const updateInitialState = (f, ls) => {
     let classNames = {}
@@ -112,6 +123,36 @@ function useLocalStorage(itemName, initialValue, f) {
             }
             onSave(parsedItem);
             updateInitialState(f, parsedItem);
+
+            // load token from cookie if exists
+            let token = null;
+            token = document.cookie.replace(/(?:(?:^|.*;\s*)bpt\s*=\s*([^;]*).*$)|^.*$/, "$1");
+            if(token || parsedItem.logged) {
+                const url = 'api/user/validate_login/';
+                miAxios.get(
+                    url
+                ).then(response => {
+                    const user = response.data.user;
+                    f.upgradeLvl1('loadings', 'init', false);
+                    f.upgradeLvl1('forms', 'login', {});
+                    f.upgradeLvl1('login', 'user', user);
+                    f.upgradeLvl1('login', 'logged', true);
+
+                    localStorage.setItem(itemName, JSON.stringify(parsedItem));
+                    onSave(parsedItem);
+                }).catch(error => {
+                    f.upgradeLvl1('loadings', 'init', false);
+                    const message = error.response?.data?.message || '';
+                    f.upgradeLvl1('login', 'user', null);
+                    f.upgradeLvl1('login', 'logged', false);
+                    f.upgradeLvl1('login', 'message', 'Sesion Expirada');
+                    document.cookie = `bpt=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`
+                    localStorage.setItem(itemName, JSON.stringify(parsedItem));
+                    onSave(parsedItem);
+                });
+            } else {
+                f.upgradeLvl1('loadings', 'init', false);
+            }
         } catch (error) {
             console.log(error);
         }
@@ -161,6 +202,49 @@ class localFunctions {
         this.ld(clone_state);
         updateInitialState(this.f, clone_state);
         this.f.upgradeLvl2('modals', 'themes', 'changed', true);
+    }
+
+    login = () => {
+        this.f.upgradeLvl1('loadings', 'login', true);
+        const endpoint = 'api/user/login/';
+        const formData = this.s.forms?.login || {};
+        miAxios.post(
+            endpoint,
+            formData
+        ).then(response => {
+            this.f.upgradeLvl1('loadings', 'login', false);
+
+            const user = response.data.user;
+            const token = `${user.token}`;
+            delete user.token;
+
+            this.f.upgradeLvl1('forms', 'login', {});
+            this.f.upgradeLvl1('login', 'user', user);
+            this.f.upgradeLvl1('login', 'logged', true);
+            this.f.upgradeLvl1('stateNavigation', 'location', '/');
+            this.f.upgradeLvl1('stateNavigation', 'reload', !this.s.stateNavigation?.reload);
+
+            const date = new Date();
+            date.setTime(date.getTime() + (12 * 60 * 60 * 1000));
+            const expires = "expires=" + date.toUTCString();
+            document.cookie = "bpt=" + token + ";" + expires + ";path=/";
+
+        }).catch(error => {
+
+            this.f.upgradeLvl1('loadings', 'login', false);
+            let message = error.response.data.message;
+            this.f.alertSwal({
+                icon: 'error',
+                message: message,
+            });
+        })
+    }
+
+    cerrarSesion = () => {
+        this.f.upgradeLvl1('login', 'user', null);
+        this.f.upgradeLvl1('login', 'logged', false);
+        this.f.upgradeLvl1('login', 'message', 'Sesion cerrada');
+        document.cookie = `bpt=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`
     }
 }
 
