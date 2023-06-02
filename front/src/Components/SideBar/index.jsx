@@ -11,6 +11,8 @@ const SideBar = () => {
     const [selects, setSelects] = React.useState({});
     const [elegidos, setElegidos] = React.useState({});
 
+    const permisos = s.login?.user?.permisos || [];
+
     // navbar abierto o escondido
     React.useEffect(() => {
         const abr = ([false, true].includes(s?.mainContainer?.sideBar) ? s?.mainContainer?.sideBar : true) || !!s?.hovers?.sidebar;
@@ -49,12 +51,13 @@ const SideBar = () => {
                         }
                     </p>
 
+                    {permisos.includes('adm') && 
                     <Link 
                         className={`w-full text-[var(--my-minor)] mt-4 ${abierto ? 'text-center' : 'hidden'}`}
                         to="articulos/agregar"
                         >
                         Agregar Articulos
-                    </Link>
+                    </Link>}
             </div>
         </React.Fragment>
     )

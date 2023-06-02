@@ -8,6 +8,13 @@ class Command(MyBaseCommand):
         users = User.objects.filter(correo='admin@admin.com')
         if users:
             raise self.MYE('Ya se ha creado este usuario')
+        
+        for user in User.objects.all():
+            permiso = UserPermisos()
+            permiso.user = user
+            permiso.permiso = 'gen'
+            permiso.save()
+        
         user = User()
         user.nombre = 'admin'
         user.apellido = 'admin'
