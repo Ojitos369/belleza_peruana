@@ -3,6 +3,7 @@ from datetime import datetime
 
 # Django
 from django.db import models
+from django.utils import timezone
 
 # User
 from .articulos.models import Articulo
@@ -123,7 +124,7 @@ class WishList(models.Model):
 class Sessions(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     token = models.CharField(max_length=255)
-    date_created = models.DateTimeField(default=datetime.now)
+    date_created = models.DateTimeField(default=timezone.now)
     
     class Meta:
         db_table = 'sesiones'

@@ -9,6 +9,7 @@ import { Separador } from '../Separador';
 
 import { Articulos } from '../Articulos';
 import { Agregar as ArtAgregar } from '../Articulos/Agregar';
+import { Editar as ArtEditar } from '../Articulos/Editar';
 
 
 
@@ -53,12 +54,14 @@ const Main = () => {
                     {/* -----------   Articulos   ----------- */}
                     <Route
                         path="articulos"
-                        element={<Articulos />}
-                    >
+                        element={<Articulos />}>
                         <Route
                             path="agregar"
-                            element={<ArtAgregar />}
-                        />
+                            element={<ArtAgregar />}/>
+
+                        <Route
+                            path="editar/"
+                            element={<ArtEditar />}/>
                     </Route>
                     {/* -----------   /Articulos   ----------- */}
 

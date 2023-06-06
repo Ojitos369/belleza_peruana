@@ -29,7 +29,7 @@ class ArticuloCreate(PostApi):
         for old in old_cat_art:
             old.delete()
         
-        categorias = get_d(self.data, 'categorias', default=[])
+        categorias = get_d(self.data, 'categorias_str', default=[])
         for cat in categorias:
             cat = cat.strip().lower()
             try:
@@ -69,7 +69,10 @@ class ArticuloUpdate(PostApi):
         for old in old_cat_art:
             old.delete()
         
-        categorias = get_d(self.data, 'categorias', default=[])
+        categorias = get_d(self.data, 'categorias_str', default=[])
+        categorias = categorias.replace(', ', ',')
+        categorias = categorias.split(',')
+
         for cat in categorias:
             cat = cat.strip().lower()
             try:
@@ -103,8 +106,11 @@ class ArticuloList(NoSession, GetApi):
             for c in categories:
                 categorias.append(c.category.name)
             
+            categorias_str = ', '.join(categorias)
+            
             model = md(a)
             model['categorias'] = categorias
+            model['categorias_str'] = categorias_str
             articulos.append(model)
 
         self.response = articulos
@@ -122,10 +128,30 @@ class ArticuloDetail(NoSession, GetApi):
         
         for c in categories:
             categorias.append(c.category.name)
+            
+        categorias_str = ', '.join(categorias)
         
         model = md(art)
         model['categorias'] = categorias
+        model['categorias_str'] = categorias_str
 
         self.response = model
 
+
+class ArticuloDelete(NoSession, GetApi):
+    def main(self):
+        pln('ArticuloDetail')
+
+        id = get_d(self.kwargs, 'art_id', default=None, to_parse=int)
+        art = Articulo.objects.get(id=id)
+        
+        categories = CategoryArticulo.objects.filter(articulo=art)
+
+        for c in categories:
+            c.delete()
+            
+        art.delete()
+        self.response = {
+            'message': 'Articulo eliminado'
+        }
 

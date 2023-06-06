@@ -16,6 +16,11 @@ function Login() {
         lf.login();
     }
 
+    useEffect(() => {
+        const ele = document.getElementById('correo');
+        if (ele) ele.focus();
+    }, []);
+
     return (
         <Fragment>
             <div className='flex flex-wrap justify-center w-full text-[var(--my-minor)]'>

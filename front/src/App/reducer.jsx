@@ -254,83 +254,70 @@ class functions {
                 });
             });
         },
+        editar: () => {
+            const data = this.s?.forms?.editar_articulo || {};
+            const id = data.id;
+            const endpoint = `api/articulos/${id}/update/`;
+            miAxios.post(
+                endpoint,
+                data
+            ).then(response => {
+                MySwal.fire({
+                    icon: 'success',
+                    title: 'Articulo editado',
+                });
+                this.upgradeLvl1('stateNavigation', 'location', '/');
+                this.upgradeLvl1('stateNavigation', 'reload', !this.s.stateNavigation?.reload);
+            }).catch(error => {
+                MySwal.fire({
+                    icon: 'error',
+                    title: 'Error al editar articulo',
+                });
+            });
+        },
+        eliminar: () => {
+            const data = this.s?.forms?.editar_articulo || {};
+            const id = data.id;
+            const endpoint = `api/articulos/${id}/delete/`;
+            miAxios.get(
+                endpoint
+            ).then(response => {
+                MySwal.fire({
+                    icon: 'success',
+                    title: 'Articulo eliminado',
+                });
+                this.upgradeLvl1('stateNavigation', 'location', '/');
+                this.upgradeLvl1('stateNavigation', 'reload', !this.s.stateNavigation?.reload);
+            }).catch(error => {
+                MySwal.fire({
+                    icon: 'error',
+                    title: 'Error al eliminar articulo',
+                });
+            });
+        },
         getProductos: () => {
-            let productos = [
-                {
-                    id: 1,
-                    name: 'Gel Limpieza Profunda',
-                    photo: 'https://media-la-cdn.oriflame.com/productImage/?externalMediaId=product-management-media%2F42613%2F42613.png%3Fversion%3D1674547227&w=231&bc=%23f5f5f5&ib=%23f5f5f5&h=231&q=90',
-                    description: 'Un Gel',
-                    price: 24.90,
-                    category: 'facial',
-                    quantity: 50,
-                    sold: false,
-                    date_created: '',
-                },
-                {
-                    id: 2,
-                    name: 'Miss Giordani Eau de Parfum',
-                    photo: 'https://media-la-cdn.oriflame.com/productImage/?externalMediaId=product-management-media%2F30399%2F30399.png%3Fversion%3D1607430601&w=231&bc=%23f5f5f5&ib=%23f5f5f5&h=231&q=90',
-                    description: 'Un Perfume',
-                    price: 49.90,
-                    category: 'olor',
-                    quantity: 45,
-                    sold: false,
-                    date_created: '',
-                },
-                {
-                    id: 3,
-                    name: 'Producto Lindo de limpieza',
-                    photo: 'https://auriaperfumes.com/wp-content/uploads/2022/09/bottlersc-1.png',
-                    description: 'Un Producto',
-                    price: 24.90,
-                    category: 'facial',
-                    quantity: 50,
-                    sold: false,
-                    date_created: '',
-                },
-                {
-                    id: 4,
-                    name: 'Para mejores resultados',
-                    photo: 'https://fraganciasdo.com/wp-content/uploads/2022/03/img-portada-banner.jpg',
-                    description: 'Mejor resultado',
-                    price: 49.90,
-                    category: 'olor',
-                    quantity: 45,
-                    sold: false,
-                    date_created: '',
-                },
-                {
-                    id: 5,
-                    name: 'Nadie como tu',
-                    photo: 'https://cdn.shopify.com/s/files/1/0654/0273/2766/products/Diseno_sin_titulo_-_2023-02-07T150234.075_600x.png?v=1675800205',
-                    description: 'Se tu',
-                    price: 24.90,
-                    category: 'facial',
-                    quantity: 50,
-                    sold: false,
-                    date_created: '',
-                },
-                {
-                    id: 6,
-                    name: 'Simpre se puede mejorar',
-                    photo: 'https://m.media-amazon.com/images/I/71lL325qu-L._AC_UF894,1000_QL80_.jpg',
-                    description: 'Tu mejor forma',
-                    price: 49.90,
-                    category: 'olor',
-                    quantity: 45,
-                    sold: false,
-                    date_created: '',
-                },
-            ]
-
             const endpoint = 'api/articulos/';
             miAxios.get(
                 endpoint
             ).then(response => {
-                productos = response.data;
+                const productos = response.data;
                 this.upgradeLvl1('listaProductos', 'all', productos);
                 this.upgradeLvl1('listaProductos', 'mostrar', productos);
+            })
+            
+        }
+    }
+
+    categorias = {
+        getCategorias: () => {
+            const endpoint = 'api/categorias/';
+            miAxios.get(
+                endpoint
+            ).then(response => {
+                const categorias = response.data;
+                this.upgradeLvl1('listaCategorias', 'all', categorias);
+                this.upgradeLvl1('listaCategorias', 'mostrar', categorias);
+                this.upgradeLvl1('filtros', 'categorias', categorias);
             })
             
         }
