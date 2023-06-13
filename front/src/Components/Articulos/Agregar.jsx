@@ -97,15 +97,15 @@ function Agregar() {
                 {/* -------------------------------   Cantidad   ------------------------------- */}
                 <div className={`${inputClass}`}>
                     <label 
-                        htmlFor="categorias"
-                        className={`${labelClass}`}>Categorias</label>
+                        htmlFor="cantidad"
+                        className={`${labelClass}`}>Cantidad</label>
                     <input
                         type="text"
-                        name="categorias"
-                        id="categorias"
+                        name="cantidad"
+                        id="cantidad"
                         placeholder='Cantidad'
                         className={`${inputFieldClass}`}
-                        value={s.forms?.add_articulo?.categorias || ''}
+                        value={s.forms?.add_articulo?.cantidad || ''}
                         onChange={e => f.upgradeLvl2('forms', 'add_articulo', e.target.name, e.target.value)} />
                 </div>
                 {/* -------------------------------   /Cantidad   ------------------------------- */}

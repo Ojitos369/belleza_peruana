@@ -18,6 +18,7 @@ const SideBar = () => {
     const categorias = s.listaCategorias?.mostrar || [];
     const articulos = s.listaProductos?.all || [];
     const categorias_filtro = s.filtros?.categorias || [];
+    const showCats = !!s.sidebar?.showCats;
 
     // console.log('categorias', categorias);
     // console.log('articulos', articulos);
@@ -31,6 +32,22 @@ const SideBar = () => {
             cats.push(cat);
         }
         f.upgradeLvl1('filtros', 'categorias', [...cats]);
+    }
+
+    const filtrarItems = e => {
+        let value = e.target.value;
+        let items = [];
+        if (!!value) {
+            value = value.toLowerCase();
+            items = (s.listaProductos?.all || []).filter(item => {
+                const titulo = item.titulo.toLowerCase();
+                const descripcion = item.descripcion.toLowerCase();
+                return titulo.includes(value) || descripcion.includes(value);
+            });
+        } else {
+            items = s.listaProductos?.all || [];
+        }
+        f.upgradeLvl1('listaProductos', 'mostrar', items);
     }
 
     // navbar abierto o escondido
@@ -54,10 +71,15 @@ const SideBar = () => {
     }, []);
 
     useEffect(() => {
-        const new_articulos = articulos.filter(art => {
-            let cats = art.categorias || [];
-            return cats.some(cat => categorias_filtro.includes(cat));
-        });
+        let new_articulos = [];
+        if (categorias_filtro.length === 0) {
+            new_articulos = articulos;
+        } else {
+            new_articulos = articulos.filter(art => {
+                let cats = art.categorias || [];
+                return cats.some(cat => categorias_filtro.includes(cat));
+            });
+        }
         f.upgradeLvl1('listaProductos', 'mostrar', new_articulos);
     }, [s.filtros?.categorias]);
 
@@ -83,17 +105,55 @@ const SideBar = () => {
                         }
                     </p>
 
+                    <div className="w-full flex justify-center mt-2">
+                    <input 
+                        type="text"
+                        className="w-11/12 search-bar rounded py-1 px-3 text-black"
+                        placeholder="Buscar"
+                        onChange={filtrarItems}
+                        />
+                    </div>
+
+                    <div className="cats-filter w-full flex flex-wrap pl-3">
+                        <button
+                            className={`w-full text-[var(--my-minor)] mt-4 ${abierto ? 'text-start' : 'hidden'}`}
+                            onClick={e => {
+                                e.preventDefault();
+                                f.upgradeLvl1('sidebar', 'showCats', !showCats);
+                            }}
+                            >
+                                {!!showCats ? '⬇️' : '➡️'} Categorias
+                        </button>
+                        {showCats &&
+                        <div className="flex w-full flex-col flex-start pl-4">
+                            {categorias.map((c, i) => {
+                                const incluida = categorias_filtro.includes(c);
+                                return (
+                                <p 
+                                    key={i}
+                                    className={`text-start ${incluida && 'text-green-700'} manita mt-1`}
+                                    onClick={() => {
+                                        filtrarCategoria(c);
+                                    }}
+                                    >
+                                    {incluida ? '✔️' : '❌'} {c}
+                                </p>
+                                )
+                            })}
+                        </div>}
+                    </div>
+
                     {permisos.includes('adm') && 
                     <Fragment>
                         <Link 
-                            className={`w-full text-[var(--my-minor)] mt-4 ${abierto ? 'text-center' : 'hidden'}`}
+                            className={`w-full text-[var(--my-minor)] mt-4 pl-3 ${abierto ? 'text-start' : 'hidden'}`}
                             to="articulos/agregar"
                             >
                             Agregar Articulos
                         </Link>
 
                         <Link 
-                            className={`w-full text-[var(--my-minor)] mt-4 ${abierto ? 'text-center' : 'hidden'}`}
+                            className={`w-full text-[var(--my-minor)] mt-4 pl-3 ${abierto ? 'text-start' : 'hidden'}`}
                             to="articulos/editar/"
                             >
                             {/* Agregar eliminar aqui mismo */}
@@ -104,32 +164,12 @@ const SideBar = () => {
                     {user && 
                     <Fragment>
                         <Link 
-                            className={`w-full text-[var(--my-minor)] mt-4 ${abierto ? 'text-center' : 'hidden'}`}
+                            className={`w-full text-[var(--my-minor)] mt-4 pl-3 ${abierto ? 'text-start' : 'hidden'}`}
                             to="compras/anteriores/"
                             >
                             Compras Anteriores
                         </Link>
                     </Fragment>}
-
-                    <p 
-                        className={`w-full text-[var(--my-minor)] mt-4 ${abierto ? 'text-center' : 'hidden'}`}
-                        >
-                        Filtar por categorias
-                    </p>
-                    {categorias.map((c, i) => {
-                        const incluida = categorias_filtro.includes(c);
-                        return (
-                        <p 
-                            key={i}
-                            className={`w-1/3 text-center ${incluida && 'text-green-700'} manita`}
-                            onClick={() => {
-                                filtrarCategoria(c);
-                            }}
-                            >
-                            {c}
-                        </p>
-                        )
-                    })}
             </div>
         </React.Fragment>
     )

@@ -9,6 +9,9 @@
     &:hover {
         .fondo {
             filter: blur(5px);
+            .sombra {
+                background-color: #000a;
+            }
         }
     }
 
@@ -34,10 +37,15 @@
         }
     }
 
-    .img-item {
+    .img-item-container {
         width: 80%;
         height: 50%;
         border-radius: 10px;
+        .img-item {
+            width: 100%;
+            height: 100%;
+            border-radius: 10px;
+        }
     }
     h4 {
         font-size: 10px;

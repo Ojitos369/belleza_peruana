@@ -4,8 +4,8 @@ import withReactContent from 'sweetalert2-react-content';
 
 
 const MySwal = withReactContent(Swal);
-axios.defaults.withCredentials = true
-const link = 'http://localhost:8000/'
+axios.defaults.withCredentials = true;
+const link = 'http://localhost:8369/';
 const miAxios = axios.create({
     baseURL: link,
 });
@@ -303,6 +303,7 @@ class functions {
                 const productos = response.data;
                 this.upgradeLvl1('listaProductos', 'all', productos);
                 this.upgradeLvl1('listaProductos', 'mostrar', productos);
+                this.categorias.getCategorias();
             })
             
         }
@@ -317,7 +318,7 @@ class functions {
                 const categorias = response.data;
                 this.upgradeLvl1('listaCategorias', 'all', categorias);
                 this.upgradeLvl1('listaCategorias', 'mostrar', categorias);
-                this.upgradeLvl1('filtros', 'categorias', categorias);
+                // this.upgradeLvl1('filtros', 'categorias', categorias);
             })
             
         }

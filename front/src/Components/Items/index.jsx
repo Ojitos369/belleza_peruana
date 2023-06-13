@@ -47,31 +47,67 @@ const Item = (props) => {
     }
     return (
         <div className="flex justify-center flex-wrap mt-8 px-8">
-            <div className="item-container flex justify-center flex-wrap">
+            <div className="item-container flex justify-start items-center flex-col">
+                {/* ---------------------------------   BG   --------------------------------- */}
                 <div 
                     className="fondo"
                     style={{backgroundImage: `url(${ele.url})`}}
                     >
-                        <div className="sombra"></div>
-                    </div>
-                <img
-                    className='img-item' 
-                    src={ele.url} 
-                    alt={ele.titulo}/>
-                <h4 className='flex w-10/12 justify-between flex-wrap'
-                    >
-                    <span className='w-full text-start title'>
+                    <div className="sombra"></div>
+                </div>
+                {/* ---------------------------------   /BG   --------------------------------- */}
+
+                {/* ---------------------------------   IMAGE   --------------------------------- */}
+                <div className="img-item-container w-full flex justify-center m-0 mt-1">
+                    <img
+                        className='img-item ' 
+                        src={ele.url} 
+                        alt={ele.titulo}/>
+                </div>
+                {/* ---------------------------------   /IMAGE   --------------------------------- */}
+                
+                {/* ---------------------------------   NAME   --------------------------------- */}
+                <p className="name-item-container w-full flex justify-between m-0 mt-1">
+                    <span className='text-start pl-3 w-2/3 font-bold'>
                         {ele.titulo}
                     </span>
-                    <span className='w-10/12 text-end cost'>
-                        {hp.showCurrency(ele.precio)}
-                    </span>
-                </h4>
-                <button
-                    onClick={addToCart}
-                >
-                    Agregar al carrito
-                </button>
+                    <small className='text-end pr-3 w-1/3 overflow-hidden whitespace-nowrap mr-3'>
+                        {ele.categorias_str}
+                    </small>
+                </p>
+                {/* ---------------------------------   /NAME   --------------------------------- */}
+
+                {/* ---------------------------------   DESC   --------------------------------- */}
+                <p className="name-item-container w-full flex justify-between m-0">
+                    <small className='text-start pl-3 w-2/3 overflow-hidden whitespace-nowrap ml-1'>
+                        {ele.descripcion}
+                    </small>
+                </p>
+                {/* ---------------------------------   /DESC   --------------------------------- */}
+
+                {/* ---------------------------------   PRICE   --------------------------------- */}
+                <div className="flex price-item-container justify-center m-0 mt-1">
+                    <p className='text-center text-[#0f0] font-bold'>
+                        Price: {hp.showCurrency(ele.precio)}
+                    </p>
+                </div>
+                {/* ---------------------------------   /PRICE   --------------------------------- */}
+
+                {/* ---------------------------------   ACTIONS - STOCK   --------------------------------- */}
+                <div className="actions-item-container w-full flex justify-between m-0 mt-1">
+                    <div className="add-item-button w-2/3 justify-center flex">
+                        <button 
+                            className='w-full h-[25px] text-sm'
+                            onClick={addToCart}>
+                            Add
+                        </button>
+                    </div>
+                    <small className='text-end p-2 w-1/3 overflow-hidden whitespace-nowrap'>
+                        stock: {ele.cantidad}
+                    </small>
+                </div>
+                {/* ---------------------------------   /ACTIONS - STOCK   --------------------------------- */}
+                
 
             </div>
         </div>

@@ -2,31 +2,16 @@ import React from 'react';
 import { AllContext } from '../../App/MyContext';
 import { UserMenuModal } from '../Modals/header/UserMenuModal';
 import './style/index.css'
+import { Fragment } from 'react';
 
 
 const Header = props => {
-    const { ls, Link, s, f, Icons } = React.useContext(AllContext);
+    const { lf, Link, s, f, Icons } = React.useContext(AllContext);
     const icons = new Icons();
     const { abierto } = props;
 
     const toggleUserMenu = () => {
         f.upgradeLvl2('modals', 'header', 'userMenu', !s.modals?.header?.userMenu);
-    }
-
-    const filtrarItems = e => {
-        let value = e.target.value;
-        let items = [];
-        if (!!value) {
-            value = value.toLowerCase();
-            items = (s.listaProductos?.all || []).filter(item => {
-                const titulo = item.titulo.toLowerCase();
-                const descripcion = item.descripcion.toLowerCase();
-                return titulo.includes(value) || descripcion.includes(value);
-            });
-        } else {
-            items = s.listaProductos?.all || [];
-        }
-        f.upgradeLvl1('listaProductos', 'mostrar', items);
     }
 
     return (
@@ -53,21 +38,6 @@ const Header = props => {
                     </Link>
                 </div>
 
-                <input 
-                    type="text"
-                    className="w-1/12 search-bar"
-                    placeholder="Buscar"
-                    onChange={filtrarItems}
-                     />
-
-                <button
-                    className="text-icon manita"
-                    onClick={toggleUserMenu}
-                    >
-                    {/* {icons.userAlien()} */}
-                    {icons.userSecret()}
-                </button>
-
                 <button
                     className="text-icon cart-button manita ml-6"
                     onClick={toggleUserMenu}
@@ -77,6 +47,42 @@ const Header = props => {
                         {s.compras?.itemsAgregados?.length || 0}
                     </span>
                 </button>
+
+                {!s.login?.user ?
+                <Fragment>
+                    <Link
+                        to="/login"
+                        className="text-icon manita ml-4"
+                        // onClick={toggleUserMenu}
+                        >
+                        {/* {icons.userAlien()} */}
+                        {/* {icons.userSecret()} */}
+                        Ingresar
+                    </Link>
+
+                    <Link
+                        to="/signup"
+                        className="text-icon manita ml-4"
+                        // onClick={toggleUserMenu}
+                        >
+                        {/* {icons.userAlien()} */}
+                        {/* {icons.userSecret()} */}
+                        Registrarse
+                    </Link>
+                </Fragment>
+                :
+                <Fragment>
+                    <Link
+                        to="/"
+                        className="text-icon manita ml-4"
+                        onClick={lf.cerrarSesion}
+                        >
+                        {/* {icons.userAlien()} */}
+                        {/* {icons.userSecret()} */}
+                        Salir
+                    </Link>
+                </Fragment>
+                }
             </div>
             {!!s.modals?.header?.userMenu && 
             <UserMenuModal />}

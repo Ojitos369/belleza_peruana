@@ -30,6 +30,8 @@ class ArticuloCreate(PostApi):
             old.delete()
         
         categorias = get_d(self.data, 'categorias_str', default=[])
+        categorias = categorias.replace(', ', ',')
+        categorias = categorias.split(',')
         for cat in categorias:
             cat = cat.strip().lower()
             try:

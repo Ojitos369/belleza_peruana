@@ -10,6 +10,9 @@
 .item-container:hover .fondo {
   filter: blur(5px);
 }
+.item-container:hover .fondo .sombra {
+  background-color: rgba(0, 0, 0, 0.6666666667);
+}
 .item-container .fondo {
   width: 100%;
   height: 100%;
@@ -31,9 +34,14 @@
   background-color: rgba(0, 0, 0, 0.5333333333);
   z-index: -1;
 }
-.item-container .img-item {
+.item-container .img-item-container {
   width: 80%;
   height: 50%;
+  border-radius: 10px;
+}
+.item-container .img-item-container .img-item {
+  width: 100%;
+  height: 100%;
   border-radius: 10px;
 }
 .item-container h4 {
