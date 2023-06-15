@@ -7,9 +7,7 @@ import { SingUp } from '../SingUp';
 import { Login } from '../Login';
 import { Separador } from '../Separador';
 import { Cart } from '../Cart';
-
 import { Articulos } from '../Articulos';
-import { Cart } from '../Cart';
 import { Agregar as ArtAgregar } from '../Articulos/Agregar';
 import { Editar as ArtEditar } from '../Articulos/Editar';
 
