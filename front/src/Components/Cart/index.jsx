@@ -3,7 +3,7 @@ import { AllContext } from '../../App/MyContext';
 import { Table } from './Table';
 
 function Cart() {
-    const { ls, lf, s, f, Icons } = useContext(AllContext);
+    const { ls, lf, s, f, Icons, hp } = useContext(AllContext);
     const icons = new Icons();
     const total = s.compras?.total || 0;
     return (
