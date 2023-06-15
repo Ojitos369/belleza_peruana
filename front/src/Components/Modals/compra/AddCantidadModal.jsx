@@ -7,7 +7,8 @@ function AddCantidadModal(props) {
     const icons = new Icons();
     
     const ztyle = props.zindex ? {zIndex: props.zindex} : {};
-    const ele = s.compras?.agregando?.item || {};
+    const ele = s.compras?.agregando || {};
+    const item = ele.item || {};
 
     const close = () => {
         f.upgradeLvl1('compras', 'agregando', null);
@@ -19,7 +20,7 @@ function AddCantidadModal(props) {
         let added = s.compras?.itemsAgregados || [];
         let encontrado = false;
         added = added.map((ele, index) => {
-            if (ele.id === id) {
+            if (ele.item.id === id) {
                 ele.cantidad += s.compras?.agregando?.cantidad || 0;
                 encontrado = true;
             }
@@ -60,22 +61,22 @@ function AddCantidadModal(props) {
                 <div className="w-10/12 md:w-5/12 flex flex-col justify-start items-center ele-data">
                     <div className="w-full justify-center flex">
                         <img 
-                            src={ele.url} 
-                            alt={ele.titulo}
+                            src={item.url} 
+                            alt={item.titulo}
                             className="ele-img"
                             />
                     </div>
                     <div className="w-8/12 mt-1 ele-name">
-                        <h2 className="text-start text-2xl font-bold">{ele.titulo}</h2>
+                        <h2 className="text-start text-2xl font-bold">{item.titulo}</h2>
                     </div>
                     <div className="w-8/12 mt-1 ele-price">
-                        <h3 className="text-end text-xl font-bold">{hp.showCurrency(ele.precio)}</h3>
+                        <h3 className="text-end text-xl font-bold">{hp.showCurrency(item.precio)}</h3>
                     </div>
                 </div>
 
                 <div className="w-10/12 md:w-5/12 flex flex-col justify-center items-start ele-cantidad">
                     <div className="w-9/12 mt-1 ele-desc">
-                        <h3 className="text-start">{ele.descripcion}</h3>
+                        <h3 className="text-start">{item.descripcion}</h3>
                     </div>
                     <div className="w-full flex flex-wrap justify-center mt-4">
                         <h2 className="text-center text-xl mt-4">Cantidad</h2>

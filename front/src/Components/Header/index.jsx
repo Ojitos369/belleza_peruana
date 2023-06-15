@@ -38,15 +38,15 @@ const Header = props => {
                     </Link>
                 </div>
 
-                <button
+                <Link
+                    to="/cart"
                     className="text-icon cart-button manita ml-6"
-                    onClick={toggleUserMenu}
                     >
                     {icons.cartShopping()}
                     <span className='count-cart'>
                         {s.compras?.itemsAgregados?.length || 0}
                     </span>
-                </button>
+                </Link>
 
                 {!s.login?.user ?
                 <Fragment>
@@ -61,7 +61,7 @@ const Header = props => {
                     </Link>
 
                     <Link
-                        to="/signup"
+                        to="/sing_up"
                         className="text-icon manita ml-4"
                         // onClick={toggleUserMenu}
                         >

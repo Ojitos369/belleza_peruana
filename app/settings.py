@@ -102,17 +102,26 @@ WSGI_APPLICATION = 'app.wsgi.application'
 #     }
 # }
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'USER': 'yenif',
+#         'HOST': 'localhost',
+#         'PORT': '3306',
+#         'NAME': 'belleza_peruana',
+#     }
+# }
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'USER': 'yenif',
-        'HOST': 'localhost',
-        'PORT': '3306',
-        'NAME': 'belleza_peruana',
+        'USER': os.environ.get('DB_USER', 'yenif'),
+        'PASSWORD': os.environ.get('DB_PASSWORD', ''),
+        'HOST': os.environ.get('DB_HOST', 'localhost'),
+        'PORT': os.environ.get('DB_PORT', '3306'),
+        'NAME': os.environ.get('DB_DATABASE', 'belleza_peruana'),
     }
 }
-
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
