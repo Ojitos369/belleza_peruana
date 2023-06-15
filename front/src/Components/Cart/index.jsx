@@ -24,7 +24,7 @@ function Cart() {
                             f.compras.cobrar();
                         }}
                         >
-                        Cobrar {hp.showCurrency(total)}
+                        Pagar {hp.showCurrency(total)}
                     </button>
                 </div>}
             </div>
