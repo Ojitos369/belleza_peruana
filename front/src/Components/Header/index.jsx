@@ -1,8 +1,7 @@
-import React from 'react';
+import React, { Fragment, useContext, useEffect, useState } from 'react';
 import { AllContext } from '../../App/MyContext';
 import { UserMenuModal } from '../Modals/header/UserMenuModal';
 import './style/index.css'
-import { Fragment } from 'react';
 
 
 const Header = props => {
@@ -13,6 +12,17 @@ const Header = props => {
     const toggleUserMenu = () => {
         f.upgradeLvl2('modals', 'header', 'userMenu', !s.modals?.header?.userMenu);
     }
+
+    useEffect(() => {
+        const agregados = s.compras?.itemsAgregados || [];
+        let total = 0;
+        agregados.forEach(ele => {
+            total += parseFloat(ele.cantidad || 0) * parseFloat(ele.item?.precio || 0);
+        });
+        f.upgradeLvl1('compras', 'total', total);
+    }, [
+        s.compras?.itemsAgregados
+    ]);
 
     return (
         <React.Fragment>

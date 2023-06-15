@@ -30,16 +30,17 @@ class ArticuloCreate(PostApi):
             old.delete()
         
         categorias = get_d(self.data, "categorias_str", default=[])
+        categorias = categorias.replace("  ", " ")
         categorias = categorias.replace(", ", ",")
         categorias = categorias.split(",")
         for cat in categorias:
-            cat = cat.strip().lower()
             try:
-                c = Category.objects.get(name=cat)
+                c = Category.objects.get(lower_name=cat.lower())
             except:
                 c = Category()
 
             c.name = cat
+            c.lower_name = cat.lower()
             c.save()
             
             cat_art = CategoryArticulo()
@@ -72,17 +73,19 @@ class ArticuloUpdate(PostApi):
             old.delete()
         
         categorias = get_d(self.data, "categorias_str", default=[])
+        categorias = categorias.replace("  ", " ")
         categorias = categorias.replace(", ", ",")
         categorias = categorias.split(",")
 
         for cat in categorias:
-            cat = cat.strip().lower()
+            cat = cat.strip()
             try:
-                c = Category.objects.get(name=cat)
+                c = Category.objects.get(lower_name=cat.lower())
             except:
                 c = Category()
             
             c.name = cat
+            c.lower_name = cat.lower()
             c.save()
             
             cat_art = CategoryArticulo()
@@ -146,12 +149,7 @@ class ArticuloDelete(NoSession, GetApi):
 
         id = get_d(self.kwargs, "art_id", default=None, to_parse=int)
         art = Articulo.objects.get(id=id)
-        
-        categories = CategoryArticulo.objects.filter(articulo=art)
-
-        for c in categories:
-            c.delete()
-            
+    
         art.delete()
         self.response = {
             "message": "Articulo eliminado"

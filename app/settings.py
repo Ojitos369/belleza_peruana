@@ -187,7 +187,7 @@ class MYE(Exception):
     pass
 
 """
-docker run -d --name mydb -e MYSQL_ROOT_PASSWORD=pass -p 3306:3306 mysql
+docker run -d --name mydb -e MYSQL_ROOT_PASSWORD=pass -p 3307:3306 mysql
 docker exec -ti mydb bash
     - mysql -u user -p
     - CREATE DATABASE database_name;

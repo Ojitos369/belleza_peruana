@@ -324,6 +324,25 @@ class functions {
         }
     }
 
+    compras = {
+        deleteArticulo: index => {
+            const registros = this.s.compras?.itemsAgregados || [];
+            let newRegistros = registros.filter((item, i) => i !== index);
+            this.upgradeLvl1('compras', 'itemsAgregados', [...newRegistros]);
+        },
+        cobrar: () => {
+            const user = this.s.login?.user
+            if (!user?.id) {
+                MySwal.fire({
+                    icon: 'error',
+                    title: 'Porfavor Inicie Sesion para poder continuar con la compra',
+                });
+                return;
+            }
+            const endpoint = 'api/compras/cobrar/';
+        },
+    }
+
     // ------------------------------------------------------------------ //
     // ---------------------------   LEVELS   --------------------------- //
     // ------------------------------------------------------------------ //

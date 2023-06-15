@@ -24,12 +24,21 @@ class Command(MyBaseCommand):
 
             print(f'Se creo el usuario Correctamente con 1 permiso')
         
-        for user in User.objects.all():
+        all_users = User.objects.all()
+        for u in all_users:
+            print(u, u.correo, u.id)
             permiso = UserPermisos()
-            permiso.user = user
+            permiso.user = u
             permiso.permiso = 'gen'
             permiso.save()
-        
+            
+        added = []
+        for p in UserPermisos.objects.all():
+            if f"{p.permiso}{p.user.correo}" not in added:
+                added.append(f"{p.permiso}{p.user.correo}")
+            else:
+                p.delete()
+
         articulos = [
             {
                 "titulo": "Crema derk",
@@ -37,7 +46,7 @@ class Command(MyBaseCommand):
                 "url": "https://www.zonadamas.mx/wp-content/uploads/2021/12/8bQ-Gns-Crema-regeneradora-0-25080594_m.jpg",
                 "precio": 30,
                 "cantidad": 10,
-                "categorias": "Cuiadado de piel."
+                "categorias": "Cuiadado de piel"
             },
             {
                 "titulo": "Crema Fell",
@@ -137,12 +146,14 @@ class Command(MyBaseCommand):
             # Category
             # CategoryArticulo
             for cat in cats:
-                cs = Category.objects.filter(name__iexact=cat)
+                cat = cat.strip()
+                cs = Category.objects.filter(lower_name=cat.lower())
                 if not cs:
                     cs = Category()
                 else:
                     cs = cs[0]
                 cs.name = cat
+                cs.lower_name = cat.lower()
                 cs.save()
                 
                 un = CategoryArticulo()
