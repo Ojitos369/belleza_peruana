@@ -10,8 +10,15 @@ const Header = props => {
     const icons = new Icons();
     const { abierto } = props;
 
-    const toggleUserMenu = () => {
-        f.upgradeLvl2('modals', 'header', 'userMenu', !s.modals?.header?.userMenu);
+    const toggleSidebar = e => {
+        if (!!e) e.preventDefault();
+        // f.upgradeLvl1('sizes', 'md', false);
+        // f.upgradeLvl2('modals', 'sidebar', 'show', false);
+        if (!s.sizes?.md) {
+            f.upgradeLvl1('mainContainer', 'sideBar', !abierto);
+        } else {
+            f.upgradeLvl2('modals', 'sidebar', 'show', !s.modals?.sidebar?.show);
+        }
     }
 
     return (
@@ -23,9 +30,7 @@ const Header = props => {
                 <p className="w-2/12 toggle-menu">
                     <button 
                         className='manita icon-span'
-                        onClick={() => {
-                            f.upgradeLvl1('mainContainer', 'sideBar', !abierto)
-                        }}
+                        onClick={toggleSidebar}
                         >
                         {icons.bars()}
                     </button>
@@ -38,15 +43,15 @@ const Header = props => {
                     </Link>
                 </div>
 
-                <button
+                <Link
+                    to="/cart"
                     className="text-icon cart-button manita ml-6"
-                    onClick={toggleUserMenu}
                     >
                     {icons.cartShopping()}
                     <span className='count-cart'>
                         {s.compras?.itemsAgregados?.length || 0}
                     </span>
-                </button>
+                </Link>
 
                 {!s.login?.user ?
                 <Fragment>
@@ -61,7 +66,7 @@ const Header = props => {
                     </Link>
 
                     <Link
-                        to="/signup"
+                        to="/sing_up"
                         className="text-icon manita ml-4"
                         // onClick={toggleUserMenu}
                         >

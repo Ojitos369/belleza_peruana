@@ -304,7 +304,7 @@ class functions {
                 this.upgradeLvl1('listaProductos', 'all', productos);
                 this.upgradeLvl1('listaProductos', 'mostrar', productos);
                 this.categorias.getCategorias();
-            })
+            });
             
         }
     }

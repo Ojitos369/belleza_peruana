@@ -8,6 +8,8 @@ import { Header } from '../Components/Header';
 import { SideBar } from '../Components/SideBar';
 import { Loading } from '../Components/Loading';
 
+import { ModalSidebar } from '../Components/Modals/Sidebar/ModalSidebar';
+
 
 const BgTheme = () => {
     const { ls, Icons } = useContext(AllContext);
@@ -44,6 +46,7 @@ function AppUI() {
             f.upgradeLvl1('sizes', 'md', true);
         } else {
             f.upgradeLvl1('sizes', 'md', false);
+            f.upgradeLvl2('modals', 'sidebar', 'show', false);
         }
     }
 
@@ -63,6 +66,7 @@ function AppUI() {
             <div 
                 className="flex w-full flex-wrap">
                 <BgTheme />
+                <ModalSidebar />
                 <nav className={`${md && 'hidden'} flex ${abierto ? 'short-div-abierto' : 'short-div-cerrado'}`}>
                     <SideBar />
                 </nav>

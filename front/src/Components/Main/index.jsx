@@ -8,6 +8,7 @@ import { Login } from '../Login';
 import { Separador } from '../Separador';
 
 import { Articulos } from '../Articulos';
+import { Cart } from '../Cart';
 import { Agregar as ArtAgregar } from '../Articulos/Agregar';
 import { Editar as ArtEditar } from '../Articulos/Editar';
 
@@ -27,27 +28,28 @@ const Main = () => {
                     {/* -----------   Home   ----------- */}
                     <Route
                         path="/"
-                        element={
-                            <Items />
-                        }
+                        element={<Items />}
                     />
                     {/* -----------   /Home   ----------- */}
 
                     {/* -----------   SingUp   ----------- */}
                     <Route
                         path="sing_up"
-                        element={
-                            <SingUp />
-                        }
+                        element={<SingUp />}
                     />
                     {/* -----------   /SingUp   ----------- */}
 
                     {/* -----------   Login   ----------- */}
                     <Route
                         path="login"
-                        element={
-                            <Login />
-                        }
+                        element={<Login />}
+                    />
+                    {/* -----------   /Login   ----------- */}
+
+                    {/* -----------   Login   ----------- */}
+                    <Route
+                        path="cart"
+                        element={<Cart />}
                     />
                     {/* -----------   /Login   ----------- */}
 
@@ -69,9 +71,7 @@ const Main = () => {
                     {/* -----------   Test   ----------- */}
                     <Route
                         path="test"
-                        element={
-                            <Test />
-                        }
+                        element={<Test />}
                     />
                     {/* -----------   /Test   ----------- */}
 
