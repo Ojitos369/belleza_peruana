@@ -9,19 +9,25 @@ function AddCantidadModal(props) {
     const ztyle = props.zindex ? {zIndex: props.zindex} : {};
     const ele = s.compras?.agregando || {};
     const item = ele.item || {};
+    const cantidad = parseFloat(ele?.cantidad || 0);
 
-    const close = () => {
+    const close = e => {
+        if (!!e) e.preventDefault();
         f.upgradeLvl1('compras', 'agregando', null);
         f.upgradeLvl2('modals', 'compras', 'addCantidad', false);
     }
 
-    const add = () => {
+    const add = e => {
+        if (!!e) e.preventDefault();
         const id = item.id;
+        if (cantidad <= 0) {
+            return;
+        }
         let added = s.compras?.itemsAgregados || [];
         let encontrado = false;
         added = added.map((ele, index) => {
             if (ele.item.id === id) {
-                ele.cantidad += s.compras?.agregando?.cantidad || 0;
+                ele.cantidad += cantidad;
                 encontrado = true;
             }
             return ele;
@@ -37,8 +43,9 @@ function AddCantidadModal(props) {
     }
     const keysDown = e => {
         if (e.key === 'Escape') {
-            e.preventDefault();
-            close();
+            close(e);
+        } else if (e.key === 'Enter') {
+            add(e);
         }
     }
     React.useEffect(() => {
@@ -46,7 +53,19 @@ function AddCantidadModal(props) {
         return () => {
             document.removeEventListener('keydown', keysDown);
         }
-    }, [s.modals?.compras?.addCantidad]);
+    }, [
+        s.modals,
+        s.compras,
+    ]);
+
+    useEffect(() => {
+        let input;
+        while (!input) {
+            input = document.querySelector('#ele-cantidad');
+        }
+        input.focus();
+        input.select();
+    }, []);
     return (
         <div
             className="modal-info flex flex-wrap w-full justify-center items-start add-cantidad-modal-container"
@@ -105,11 +124,11 @@ function AddCantidadModal(props) {
                                 className="text-center rounded-md text-black w-full h-[40px] text-xl"
                                 value={s.compras?.agregando?.cantidad || 0}
                                 onChange={e => {
-                                    let cantidad = parseInt(e.target.value);
+                                    let cantidad = parseFloat(e.target.value);
                                     if (isNaN(cantidad)) {
                                         cantidad = 0;
-                                    } else if (cantidad > (ele.cantidad || 0)) {
-                                        cantidad = ele.cantidad || 0;
+                                    } else if (cantidad > (item.cantidad || 0)) {
+                                        cantidad = item.cantidad || 0;
                                     } else if (cantidad < 0) {
                                         cantidad = 0;
                                     }
@@ -122,7 +141,7 @@ function AddCantidadModal(props) {
                                 className="h-[40px] w-[40px]"
                                 onClick={() => {
                                     let cantidad = s.compras?.agregando?.cantidad || 0;
-                                    if (cantidad > (ele.cantidad || 0)) {
+                                    if (cantidad > (item.cantidad || 0)) {
                                         return;
                                     }
                                     f.upgradeLvl2('compras', 'agregando', 'cantidad', cantidad + 1)
@@ -149,13 +168,14 @@ function AddCantidadModal(props) {
 
                 <div className="w-full flex flex-wrap justify-around mt-8">
                     <button
-                        className="w-8/12 md:w-4/12 btn border border-[var(--my-danger)] hover:bg-[var(--my-success)] text-xl font-bold"
+                        className="w-8/12 md:w-4/12 btn border border-[var(--my-danger)] hover:bg-[var(--my-success) hover:border-[var(--my-success)]] text-xl font-bold"
                         onClick={close}
                         >
                         Cancelar
                     </button>
                     <button
-                        className="w-8/12 md:w-4/12 btn bg-[var(--my-success)] text-xl font-bold"
+                        className={`w-8/12 md:w-4/12 btn ${cantidad > 0 ? 'bg-[var(--my-success)]' : 'border border-[#888] text-[#888] mouse-block'} text-xl font-bold`}
+                        disabled={cantidad <= 0}
                         onClick={add}
                         >
                         Agregar

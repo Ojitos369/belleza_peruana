@@ -15,31 +15,32 @@ from apis.models import Category, CategoryArticulo
 
 class ArticuloCreate(PostApi):
     def main(self):
-        pln('ArticuloCreate')
+        pln("ArticuloCreate")
 
         art = Articulo()
-        art.titulo = get_d(self.data, 'titulo', default=None)
-        art.descripcion = get_d(self.data, 'descripcion', default=None)
-        art.url = get_d(self.data, 'url', default=None)
-        art.precio = float(get_d(self.data, 'precio', default=0))
-        art.cantidad = float(get_d(self.data, 'cantidad', default=0))
+        art.titulo = get_d(self.data, "titulo", default=None)
+        art.descripcion = get_d(self.data, "descripcion", default=None)
+        art.url = get_d(self.data, "url", default=None)
+        art.precio = float(get_d(self.data, "precio", default=0))
+        art.cantidad = float(get_d(self.data, "cantidad", default=0))
         art.save()
         
         old_cat_art = CategoryArticulo.objects.filter(articulo=art)
         for old in old_cat_art:
             old.delete()
         
-        categorias = get_d(self.data, 'categorias_str', default=[])
-        categorias = categorias.replace(', ', ',')
-        categorias = categorias.split(',')
+        categorias = get_d(self.data, "categorias_str", default=[])
+        categorias = categorias.replace("  ", " ")
+        categorias = categorias.replace(", ", ",")
+        categorias = categorias.split(",")
         for cat in categorias:
-            cat = cat.strip().lower()
             try:
-                c = Category.objects.get(name=cat)
+                c = Category.objects.get(lower_name=cat.lower())
             except:
                 c = Category()
 
             c.name = cat
+            c.lower_name = cat.lower()
             c.save()
             
             cat_art = CategoryArticulo()
@@ -48,41 +49,43 @@ class ArticuloCreate(PostApi):
             cat_art.save()
 
         model = md(art)
-        model['categorias'] = categorias
+        model["categorias"] = categorias
         self.response = model
         
 
 
 class ArticuloUpdate(PostApi):
     def main(self):
-        pln('ArticuloUpdate')
+        pln("ArticuloUpdate")
 
         # from self.kwargs
-        id = get_d(self.kwargs, 'art_id', default=None)
+        id = get_d(self.kwargs, "art_id", default=None)
         art = Articulo.objects.get(id=id)
-        art.titulo = get_d(self.data, 'titulo', default=art.titulo)
-        art.descripcion = get_d(self.data, 'descripcion', default=art.descripcion)
-        art.url = get_d(self.data, 'url', default=art.url)
-        art.precio = float(get_d(self.data, 'precio', default=art.precio))
-        art.cantidad = float(get_d(self.data, 'cantidad', default=art.cantidad))
+        art.titulo = get_d(self.data, "titulo", default=art.titulo)
+        art.descripcion = get_d(self.data, "descripcion", default=art.descripcion)
+        art.url = get_d(self.data, "url", default=art.url)
+        art.precio = float(get_d(self.data, "precio", default=art.precio))
+        art.cantidad = float(get_d(self.data, "cantidad", default=art.cantidad))
         art.save()
         
         old_cat_art = CategoryArticulo.objects.filter(articulo=art)
         for old in old_cat_art:
             old.delete()
         
-        categorias = get_d(self.data, 'categorias_str', default=[])
-        categorias = categorias.replace(', ', ',')
-        categorias = categorias.split(',')
+        categorias = get_d(self.data, "categorias_str", default=[])
+        categorias = categorias.replace("  ", " ")
+        categorias = categorias.replace(", ", ",")
+        categorias = categorias.split(",")
 
         for cat in categorias:
-            cat = cat.strip().lower()
+            cat = cat.strip()
             try:
-                c = Category.objects.get(name=cat)
+                c = Category.objects.get(lower_name=cat.lower())
             except:
                 c = Category()
             
             c.name = cat
+            c.lower_name = cat.lower()
             c.save()
             
             cat_art = CategoryArticulo()
@@ -91,13 +94,13 @@ class ArticuloUpdate(PostApi):
             cat_art.save()
 
         model = md(art)
-        model['categorias'] = categorias
+        model["categorias"] = categorias
         self.response = model
 
 
 class ArticuloList(NoSession, GetApi):
     def main(self):
-        pln('ArticuloList')
+        pln("ArticuloList")
         
         art = Articulo.objects.all()
         articulos = []
@@ -108,11 +111,11 @@ class ArticuloList(NoSession, GetApi):
             for c in categories:
                 categorias.append(c.category.name)
             
-            categorias_str = ', '.join(categorias)
+            categorias_str = ", ".join(categorias)
             
             model = md(a)
-            model['categorias'] = categorias
-            model['categorias_str'] = categorias_str
+            model["categorias"] = categorias
+            model["categorias_str"] = categorias_str
             articulos.append(model)
 
         self.response = articulos
@@ -120,9 +123,9 @@ class ArticuloList(NoSession, GetApi):
 
 class ArticuloDetail(NoSession, GetApi):
     def main(self):
-        pln('ArticuloDetail')
+        pln("ArticuloDetail")
 
-        id = get_d(self.kwargs, 'art_id', default=None)
+        id = get_d(self.kwargs, "art_id", default=None)
         art = Articulo.objects.get(id=id)
         
         categories = CategoryArticulo.objects.filter(articulo=art)
@@ -131,29 +134,25 @@ class ArticuloDetail(NoSession, GetApi):
         for c in categories:
             categorias.append(c.category.name)
             
-        categorias_str = ', '.join(categorias)
+        categorias_str = ", ".join(categorias)
         
         model = md(art)
-        model['categorias'] = categorias
-        model['categorias_str'] = categorias_str
+        model["categorias"] = categorias
+        model["categorias_str"] = categorias_str
 
         self.response = model
 
 
 class ArticuloDelete(NoSession, GetApi):
     def main(self):
-        pln('ArticuloDetail')
+        pln("ArticuloDetail")
 
-        id = get_d(self.kwargs, 'art_id', default=None, to_parse=int)
+        id = get_d(self.kwargs, "art_id", default=None, to_parse=int)
         art = Articulo.objects.get(id=id)
-        
-        categories = CategoryArticulo.objects.filter(articulo=art)
-
-        for c in categories:
-            c.delete()
-            
+    
         art.delete()
         self.response = {
-            'message': 'Articulo eliminado'
+            "message": "Articulo eliminado"
         }
+
 

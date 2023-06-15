@@ -102,17 +102,26 @@ WSGI_APPLICATION = 'app.wsgi.application'
 #     }
 # }
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'USER': 'yenif',
+#         'HOST': 'localhost',
+#         'PORT': '3306',
+#         'NAME': 'belleza_peruana',
+#     }
+# }
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'USER': os.environ.get('DB_USER'),
-        'PASSWORD': os.environ.get('DB_PASSWORD'),
-        'NAME': os.environ.get('DB_DATABASE'),
-        'HOST': os.environ.get('DB_HOST'),
-        'PORT': int(os.environ.get('DB_PORT')),
+        'USER': os.environ.get('DB_USER', 'yenif'),
+        'PASSWORD': os.environ.get('DB_PASSWORD', ''),
+        'HOST': os.environ.get('DB_HOST', 'localhost'),
+        'PORT': os.environ.get('DB_PORT', '3306'),
+        'NAME': os.environ.get('DB_DATABASE', 'belleza_peruana'),
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
@@ -178,7 +187,7 @@ class MYE(Exception):
     pass
 
 """ 
-docker run -d --name mybp -e MYSQL_ROOT_PASSWORD=pass -p 3306:3306 mysql
+docker run -d --name mydb -e MYSQL_ROOT_PASSWORD=pass -p 3307:3306 mysql
 docker exec -ti mydb bash
     - mysql -u user -p
     - CREATE DATABASE database_name;

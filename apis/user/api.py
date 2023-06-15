@@ -78,14 +78,16 @@ class Login(NoSession, PostApi):
         sesion.user = user
         sesion.token = token
         sesion.save()
-        del user.password
-        del user.activo
+        
+        ignore = ['password', 'activo']
 
         permisos = UserPermisos.objects.filter(user=user)
 
         user = md(user)
         user['token'] = token
         user['permisos'] = [p.permiso for p in permisos]
+        
+        user = {k: v for k, v in user.items() if k not in ignore}
         
         self.response = {
             'user': user

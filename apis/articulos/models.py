@@ -1,5 +1,6 @@
 from django.db import models
 from datetime import datetime
+from django.utils import timezone
 
 class Articulo(models.Model):
     # Definir los campos del artículo
@@ -8,7 +9,7 @@ class Articulo(models.Model):
     url = models.CharField(max_length=255)
     precio = models.DecimalField(max_digits=6, decimal_places=2)
     cantidad = models.IntegerField(default=0)
-    date_created = models.DateTimeField(default=datetime.now)
+    date_created = models.DateTimeField(default=timezone.now)
     # Otros campos...
 
     def __str__(self):
