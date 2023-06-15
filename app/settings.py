@@ -105,13 +105,13 @@ WSGI_APPLICATION = 'app.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'USER': os.environ.get('DB_USER'),
-        'PASSWORD': os.environ.get('DB_PASSWORD'),
-        'NAME': os.environ.get('DB_DATABASE'),
-        'HOST': os.environ.get('DB_HOST'),
-        'PORT': int(os.environ.get('DB_PORT')),
+        'USER': 'yenif',
+        'HOST': 'localhost',
+        'PORT': '3306',
+        'NAME': 'belleza_peruana',
     }
 }
+
 
 
 # Password validation
