@@ -11,6 +11,8 @@ import { Articulos } from '../Articulos';
 import { Agregar as ArtAgregar } from '../Articulos/Agregar';
 import { Editar as ArtEditar } from '../Articulos/Editar';
 
+import { Footer } from '../Footer';
+
 
 
 import { Route, Routes, Navigate } from 'react-router-dom';
@@ -87,6 +89,7 @@ const Main = () => {
                     <Route path="*" element={<div className='text-red-700 text-4xl text-center mt-16 font-bold w-full'>404 Not Found</div>} />
                     {/* -----------   /404   ----------- */}
                 </Routes>
+                <Footer />
             </div>
             <Separador smt="50"/>
         </React.Fragment>
