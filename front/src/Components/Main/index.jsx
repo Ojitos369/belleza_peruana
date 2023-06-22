@@ -89,9 +89,9 @@ const Main = () => {
                     <Route path="*" element={<div className='text-red-700 text-4xl text-center mt-16 font-bold w-full'>404 Not Found</div>} />
                     {/* -----------   /404   ----------- */}
                 </Routes>
+                <Separador smt="50"/>
                 <Footer />
             </div>
-            <Separador smt="50"/>
         </React.Fragment>
     )
 }

@@ -23,7 +23,7 @@ header #header-container .name-center {
 }
 header #header-container .name-center .big-text {
   font-size: 1.4rem;
-  color: #ffc0cb;
+  color: var(--my-pink);
 }
 header #header-container .name-center .small-text {
   font-size: 1.2rem;
@@ -32,10 +32,10 @@ header #header-container .search-bar {
   height: 38px;
   width: 300px;
   border-radius: 5px;
-  border: 1px solid #ffc0cb;
+  border: 1px solid var(--my-pink);
   padding: 0 10px;
   font-size: 1rem;
-  color: #ffc0cb;
+  color: var(--my-pink);
 }
 header #header-container .menu-container {
   height: 100%;
@@ -60,7 +60,7 @@ header #header-container .cart-button .count-cart {
   height: 20px;
   width: 20px;
   border-radius: 50%;
-  background-color: #ffc0cb;
+  background-color: var(--my-pink);
   color: #000;
   font-size: 0.8rem;
   display: flex;
