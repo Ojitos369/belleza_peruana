@@ -12,6 +12,7 @@ function Items() {
 
     useEffect(() => {
         f.articulos.getProductos();
+        f.upgradeLvl1('shows', 'sidebar', true);
     }, []);
 
     return (

@@ -2,12 +2,11 @@ import React, { Fragment, useContext, useEffect, useState } from 'react';
 import { AllContext } from '../../App/MyContext';
 
 const Footer = () => {
-    const { ls, lf, s, f, Icons } = useContext(AllContext);
+    const { ls, lf, s, f, Icons, Link } = useContext(AllContext);
     const icons = new Icons();
     
     return (
         <Fragment>
-            <div className='h-[1000px] w-full bg-[#0004]'>:D</div>
             <footer className='bg-black flex w-full flex-col py-8'>
                 {/* --------------------  Data   -------------------- */}
                 <div className="flex w-full flex-row">
@@ -33,7 +32,7 @@ const Footer = () => {
                         </p>
 
                         <ul className='w-full mt-2'>
-                            <li className='text-sm'><a className='text-[var(--my-pink-dark)]' href="#">Sobre nosotros</a></li>
+                            <li className='text-sm'><Link to="nosotros/" className='text-[var(--my-pink-dark)]' href="#">Sobre nosotros</Link></li>
                             <li className='text-sm mt-3'><a className='text-[var(--my-pink-dark)]' href="#">Terminos y Condiciones</a></li>
                             <li className='text-sm mt-3'><a className='text-[var(--my-pink-dark)]' href="#">Contactenos</a></li>
                             <li className='text-sm mt-3'><a className='text-[var(--my-pink-dark)]' href="#">Ayuda</a></li>

@@ -37,6 +37,7 @@ const Header = props => {
                 id="header-container"
                 className={`flex w-full justify-start items-center text-[var(--my-minor)]`}>
 
+                {!!s.shows?.sidebar && 
                 <p className="w-2/12 toggle-menu">
                     <button 
                         className='manita icon-span'
@@ -44,7 +45,7 @@ const Header = props => {
                         >
                         {icons.bars()}
                     </button>
-                </p>
+                </p>}
 
                 <div className="w-6/12 name-center">
                     <Link to="/" className="w-full text-center">

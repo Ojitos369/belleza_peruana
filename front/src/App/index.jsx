@@ -61,6 +61,7 @@ function AppUI() {
         navigate(url);
     }, [s?.stateNavigation?.location, s?.stateNavigation?.reload]);
 
+
     if (!s.loadings?.init ) {
         return (
             <div 

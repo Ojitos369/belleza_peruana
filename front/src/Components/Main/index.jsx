@@ -5,6 +5,7 @@ import { Test } from '../Test';
 import { Items } from '../Items';
 import { SingUp } from '../SingUp';
 import { Login } from '../Login';
+import { Nosotros } from '../Nosotros';
 import { Separador } from '../Separador';
 import { Cart } from '../Cart';
 import { Articulos } from '../Articulos';
@@ -13,7 +14,7 @@ import { Editar as ArtEditar } from '../Articulos/Editar';
 
 import { Footer } from '../Footer';
 
-
+import './style/index.css';
 
 import { Route, Routes, Navigate } from 'react-router-dom';
 
@@ -24,73 +25,84 @@ const Main = () => {
 
     return (
         <React.Fragment>
-            <div className='flex w-full justify-start items-start content-start flex-wrap'>
-                <Routes>
-                    {/* -----------   Home   ----------- */}
-                    <Route
-                        path="/"
-                        element={<Items />}
-                    />
-                    {/* -----------   /Home   ----------- */}
+            <div className='flex w-col justify-between items-between content-between flex-wrap main-content'>
 
-                    {/* -----------   SingUp   ----------- */}
-                    <Route
-                        path="sing_up"
-                        element={<SingUp />}
-                    />
-                    {/* -----------   /SingUp   ----------- */}
-
-                    {/* -----------   Login   ----------- */}
-                    <Route
-                        path="login"
-                        element={<Login />}
-                    />
-                    {/* -----------   /Login   ----------- */}
-
-                    {/* -----------   Login   ----------- */}
-                    <Route
-                        path="cart"
-                        element={<Cart />}
-                    />
-                    {/* -----------   /Login   ----------- */}
-
-                    {/* -----------   Cart   ----------- */}
-                    <Route
-                        path="cart"
-                        element={
-                            <Cart />
-                        }
-                    />
-                    {/* -----------   /Cart   ----------- */}
-
-                    {/* -----------   Articulos   ----------- */}
-                    <Route
-                        path="articulos"
-                        element={<Articulos />}>
+                <div className="flex flex-row flex-wrap w-full justify-start items-start">
+                    <Routes>
+                        {/* -----------   Home   ----------- */}
                         <Route
-                            path="agregar"
-                            element={<ArtAgregar />}/>
+                            path="/"
+                            element={<Items />}
+                        />
+                        {/* -----------   /Home   ----------- */}
 
+                        {/* -----------   SingUp   ----------- */}
                         <Route
-                            path="editar/"
-                            element={<ArtEditar />}/>
-                    </Route>
-                    {/* -----------   /Articulos   ----------- */}
+                            path="sing_up"
+                            element={<SingUp />}
+                        />
+                        {/* -----------   /SingUp   ----------- */}
 
+                        {/* -----------   Login   ----------- */}
+                        <Route
+                            path="login"
+                            element={<Login />}
+                        />
+                        {/* -----------   /Login   ----------- */}
 
-                    {/* -----------   Test   ----------- */}
-                    <Route
-                        path="test"
-                        element={<Test />}
-                    />
-                    {/* -----------   /Test   ----------- */}
+                        {/* -----------   Login   ----------- */}
+                        <Route
+                            path="cart"
+                            element={<Cart />}
+                        />
+                        {/* -----------   /Login   ----------- */}
 
-                    {/* -----------   404   ----------- */}
-                    <Route path="*" element={<div className='text-red-700 text-4xl text-center mt-16 font-bold w-full'>404 Not Found</div>} />
-                    {/* -----------   /404   ----------- */}
-                </Routes>
-                <Separador smt="50"/>
-                <Footer />
+                        {/* -----------   Cart   ----------- */}
+                        <Route
+                            path="cart"
+                            element={
+                                <Cart />
+                            }
+                        />
+                        {/* -----------   /Cart   ----------- */}
+
+                        {/* -----------   Articulos   ----------- */}
+                        <Route
+                            path="articulos"
+                            element={<Articulos />}>
+                            <Route
+                                path="agregar"
+                                element={<ArtAgregar />}/>
+
+                            <Route
+                                path="editar/"
+                                element={<ArtEditar />}/>
+                        </Route>
+                        {/* -----------   /Articulos   ----------- */}
+
+                        {/* -----------   Nosotros   ----------- */}
+                        <Route
+                            path="nosotros"
+                            element={<Nosotros />}
+                        />
+                        {/* -----------   /Nosotros   ----------- */}
+
+                        {/* -----------   Test   ----------- */}
+                        <Route
+                            path="test"
+                            element={<Test />}
+                        />
+                        {/* -----------   /Test   ----------- */}
+
+                        {/* -----------   404   ----------- */}
+                        <Route path="*" element={<div className='text-red-700 text-4xl text-center mt-16 font-bold w-full'>404 Not Found</div>} />
+                        {/* -----------   /404   ----------- */}
+                    </Routes>
+                </div>
+
+                <div className="flex flex-row flex-wrap w-full justify-start items-start">
+                    <Footer />
+                </div>
             </div>
         </React.Fragment>
     )

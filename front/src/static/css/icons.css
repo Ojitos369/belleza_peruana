@@ -60,3 +60,28 @@
 .user-secret-secondary {
     fill: #000;
 }
+
+.user-primary {
+    fill: var(--my-minor);
+}
+.user-secondary {
+    fill: #888;
+}
+
+.calendar-days-primary {
+    fill: var(--my-minor);
+}
+.calendar-days-secondary {
+    fill: #888;
+}
+
+.comments-primary {
+    fill: var(--my-minor);
+}
+.comments-secondary {
+    fill: #888;
+}
+
+.quote-left-primary {
+    fill: var(--my-minor);
+}

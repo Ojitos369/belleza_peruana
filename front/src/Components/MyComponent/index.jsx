@@ -1,7 +1,7 @@
 import React, { Fragment, useContext, useEffect, useState } from 'react';
 import { AllContext } from '../../App/MyContext';
 
-function MyComponent() {
+const MyComponent = () => {
     const { ls, lf, s, f, Icons } = useContext(AllContext);
     const icons = new Icons();
     return (
