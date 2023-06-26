@@ -164,6 +164,12 @@ const SideBarContent = props => {
                 >
                 Nosotros
             </Link>
+            <Link 
+                className={`w-full text-[var(--my-minor)] mt-4 pl-3 ${abierto ? 'text-start' : 'hidden'}`}
+                to="contacto"
+                >
+                Contacto
+            </Link>
         </Fragment>
     )
 }

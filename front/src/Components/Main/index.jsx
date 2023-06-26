@@ -6,6 +6,7 @@ import { Items } from '../Items';
 import { SingUp } from '../SingUp';
 import { Login } from '../Login';
 import { Nosotros } from '../Nosotros';
+import { Contacto } from '../Contacto';
 import { Separador } from '../Separador';
 import { Cart } from '../Cart';
 import { Articulos } from '../Articulos';
@@ -86,6 +87,13 @@ const Main = () => {
                             element={<Nosotros />}
                         />
                         {/* -----------   /Nosotros   ----------- */}
+
+                        {/* -----------   Contacto   ----------- */}
+                        <Route
+                            path="contacto"
+                            element={<Contacto />}
+                        />
+                        {/* -----------   /Contacto   ----------- */}
 
                         {/* -----------   Test   ----------- */}
                         <Route
