@@ -27,7 +27,15 @@ const Contacto = () => {
                             Escribenos tu mensaje
                         </p>
 
-                        <form className='w-full border border-[var(--my-minor)] mt-4 px-4 py-8 rounded-2xl'>
+                        <form 
+                            onSubmit={e => {
+                                e.preventDefault();
+                                f.alertSwal({
+                                    icon: "success",
+                                    message: "Mensaje Enviado",
+                                });
+                            }}
+                            className='w-full border border-[var(--my-minor)] mt-4 px-4 py-8 rounded-2xl'>
 
                             {/* ----------------------------------------   NOMBRE, ASUNTO   ---------------------------------------- */}
                             <div className="flex w-full flex-row justify-center">
