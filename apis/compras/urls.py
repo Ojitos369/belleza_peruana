@@ -1,14 +1,11 @@
 from django.urls import path
 
-from apis.articulos.api import (
-    ArticuloCreate, ArticuloUpdate, ArticuloList, ArticuloDetail, ArticuloDelete
+from apis.compras.api import (
+    SaveCompra, GetComprasPasadas
 )
 
-app_name = 'apis_articulos'
+app_name = 'apis_compras'
 urlpatterns = [
-    path('', ArticuloList.as_view(), name='articulo_list'),
-    path('<int:art_id>/', ArticuloDetail.as_view(), name='articulo_detail'),
-    path('<int:art_id>/update/', ArticuloUpdate.as_view(), name='articulo_update'),
-    path('create/', ArticuloCreate.as_view(), name='articulo_create'),
-    path('<int:art_id>/delete/', ArticuloDelete.as_view(), name='articulo_delete'),
+    path('save_compra/', SaveCompra.as_view(), name=f"{app_name}_save_compra"),
+    path('get_compras_pasadas/', GetComprasPasadas.as_view(), name=f"{app_name}_get_compras_pasadas"),
 ]
