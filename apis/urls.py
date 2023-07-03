@@ -8,6 +8,7 @@ urlpatterns = [
     path('user/', include('apis.user.urls')),
     path('articulos/', include('apis.articulos.urls')),
     path('categorias/', include('apis.categorias.urls')),
+    path('compras/', include('apis.compras.urls')),
 #aqui
     path('articulos_d/', views.ArticuloList.as_view(), name='articulo-list'),
     path('articulos_d/<int:pk>/', views.ArticuloDetail.as_view(), name='articulo-detail'),

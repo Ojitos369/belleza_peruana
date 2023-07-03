@@ -62,33 +62,23 @@ class PercentageCoupon(models.Model):
         db_table = 'descuentos_porcentaje'
 
 
-class Order(models.Model):
-    # status = models.CharField(max_length=50, choices=OrderStatus.choices, default=OrderStatus.not_processed)
-    status = models.CharField(max_length=50)
+class Compras(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    transaction_id = models.CharField(max_length=255, unique=True)
     amount = models.DecimalField(max_digits=5, decimal_places=2)
-    full_name = models.CharField(max_length=255)
-    telephone_number = models.CharField(max_length=255)
-    # shipping_name = models.CharField(max_length=255)
-    # shipping_time = models.CharField(max_length=255)
-    # shipping_price = models.DecimalField(max_digits=5, decimal_places=2)
-    date_issued = models.DateTimeField(default=timezone.now)
+    created_at = models.DateTimeField(default=timezone.now)
     
     class Meta:
-        db_table = 'ordenes'
+        db_table = 'compras'
 
 
-class OrderItem(models.Model):
+class CompraDet(models.Model):
+    compra = models.ForeignKey(Compras, on_delete=models.CASCADE)
     articulo = models.ForeignKey(Articulo, on_delete=models.DO_NOTHING)
-    order = models.ForeignKey(Order, on_delete=models.CASCADE)
-    # name = models.CharField(max_length=255)
-    # price = models.DecimalField(max_digits=5, decimal_places=2)
     count = models.IntegerField()
     date_added = models.DateTimeField(default=timezone.now)
     
     class Meta:
-        db_table = 'items_ordene'
+        db_table = 'compras_det'
 
     
 class Adrress(models.Model):

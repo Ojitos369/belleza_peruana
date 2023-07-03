@@ -305,7 +305,6 @@ class functions {
                 this.upgradeLvl1('listaProductos', 'mostrar', productos);
                 this.categorias.getCategorias();
             });
-            
         }
     }
 
@@ -339,8 +338,50 @@ class functions {
                 });
                 return;
             }
-            const endpoint = 'api/compras/cobrar/';
+            const endpoint = 'api/compras/save_compra/';
+            const registros = this.s.compras?.itemsAgregados || [];
+
+            miAxios.post(
+                endpoint,
+                {registros}
+            )
+            .then(response => {
+                MySwal.fire({
+                    icon: 'success',
+                    title: 'Compra realizada',
+                });
+                this.upgradeLvl1('stateNavigation', 'location', '/');
+                this.upgradeLvl1('stateNavigation', 'reload', !this.s.stateNavigation?.reload);
+                this.upgradeLvl1('compras', 'itemsAgregados', null);
+            })
+            .catch(error => {
+                const message = error.response.data.message;
+                MySwal.fire({
+                    icon: 'error',
+                    title: message,
+                });
+            });
         },
+        getComprasPasadas: () => {
+            const endPoint = 'api/compras/get_compras_pasadas/';
+            miAxios.get(endPoint)
+            .then(response => {
+                const compras = response.data.compras;
+                this.upgradeLvl2('compras', 'comprasPasadas', 'all', compras);
+                this.upgradeLvl2('compras', 'comprasPasadas', 'show', compras);
+            })
+            .catch(error => {
+                const message = error.response.data.message;
+                document.url = '/';
+                MySwal.fire({
+                    icon: 'error',
+                    title: message,
+                });
+
+                this.upgradeLvl1('stateNavigation', 'location', '/');
+                this.upgradeLvl1('stateNavigation', 'reload', !this.s.stateNavigation?.reload);
+            });
+        }
     }
 
     // ------------------------------------------------------------------ //

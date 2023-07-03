@@ -9,6 +9,7 @@ import { Nosotros } from '../Nosotros';
 import { Contacto } from '../Contacto';
 import { Separador } from '../Separador';
 import { Cart } from '../Cart';
+import { ComprasPasadas } from '../ComprasPasadas';
 import { Articulos } from '../Articulos';
 import { Agregar as ArtAgregar } from '../Articulos/Agregar';
 import { Editar as ArtEditar } from '../Articulos/Editar';
@@ -94,6 +95,13 @@ const Main = () => {
                             element={<Contacto />}
                         />
                         {/* -----------   /Contacto   ----------- */}
+
+                        {/* -----------   ComprasPasadas   ----------- */}
+                        <Route
+                            path="compras/anteriores/"
+                            element={<ComprasPasadas />}
+                        />
+                        {/* -----------   /ComprasPasadas   ----------- */}
 
                         {/* -----------   Test   ----------- */}
                         <Route

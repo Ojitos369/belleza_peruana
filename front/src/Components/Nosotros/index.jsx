@@ -96,9 +96,9 @@ const Nosotros = () => {
                         onSubmit={e => {
                             e.preventDefault();
                             f.alertSwal({
-                                icon: "alert",
-                                message: "No habilitado por el momento",
-                            })
+                                icon: "success",
+                                message: "Comentario Enviado",
+                            });
                         }}
                         className="comment rounded-lg border-2 border-blue-700 mt-3 flex w-full content-start flex-col p-4">
                         <div className="flex w-full flex-row justify-center">
