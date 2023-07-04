@@ -34,8 +34,10 @@ class SaveCompra(PostApi):
             com_det.compra = com
             com_det.articulo = articulo
             com_det.count = r["cantidad"]
-            
             com_det.save()
+            
+            articulo.cantidad = articulo.cantidad - com_det.count
+            articulo.save()
         
         self.response = {
             "message": "Compra realizada con exito"
